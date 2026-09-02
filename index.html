@@ -1,0 +1,878 @@
+<!doctype html><html><head><!-- frame-runtime --><script>window.__FRAME_PREAMBLE={"v":1,"capabilities":{"artifact":"artifact.C12lZ9DL.js","assets":"assets.8Gk803W0.js","comments":"comments.vw5vQdGA.js","db":"db.h-3sndFg.js","downloads":"downloads.Cqv48mdo.js","embed":"embed.eqL6deQM.js","endpoints":"endpoints.CfzSv5nM.js","mcp":"mcp.Bvma3qD7.js","network":"network.B5UA9Su4.js","permissions":"permissions.BNySkLV5.js","room":"room.VSdFwTE9.js","sample":"sample.BW2Uysoh.js","self":"artifact.C12lZ9DL.js","user":"user.BpKav-Rf.js"},"transforms":"_transforms.DSB5x63f.js","comments":"_comments.lsIZQbAK.js","translate":"_translate.5HCW4BJh.js"}</script><script>(function(){"use strict";var te=["light","dark","system"],re=/^[A-Za-z0-9_-]{1,64}$/,$=/^[a-zA-Z_:][a-zA-Z0-9_:.-]{0,127}$/,ne=new Set(["class","hidden","value","checked","style","title","alt","placeholder","lang","dir","role","tabindex","disabled","readonly","contenteditable","open","colspan","rowspan"]);function oe(e){const t=e.toLowerCase();return t.startsWith("data-")||t.startsWith("aria-")||ne.has(t)}var Be="http://www.w3.org/1999/xhtml",se="http://www.w3.org/2000/svg",ae=new Set(["script","style","iframe","noscript","noframes","noembed","xmp","plaintext","template","title","textarea","object","embed"]),ie=new Set(["script","style"]);function ce(e){const t=e.localName.toLowerCase();return e.namespaceURI==="http://www.w3.org/1999/xhtml"?!ae.has(t):e.namespaceURI===se?!ie.has(t):!1}function M(e,t){return e===t||(e===160||e===32)&&(t===160||t===32)}function le(e,t){const r=e.length,n=t.length;let s=0;for(;s<r&&s<n&&M(e.charCodeAt(s),t.charCodeAt(s));)s++;let o=0;for(;o<r-s&&o<n-s&&M(e.charCodeAt(r-1-o),t.charCodeAt(n-1-o));)o++;return{p:s,s:o}}function ue(e,t){const r=e.firstChild;if(e.childNodes.length!==1||r===null||r.nodeType!==Node.TEXT_NODE){e.textContent=t;return}const n=r.data,s=n.length,o=t.length,{p:i,s:c}=le(n,t);i===s&&c===0&&s===o||r.replaceData(i,s-i-c,t.slice(i,o-c));const h=r.data,p=e.ownerDocument.getSelection?.()??null,w=p!==null&&p.rangeCount>0&&(p.anchorNode===r||p.focusNode===r)?{anchor:p.anchorNode,anchorOffset:p.anchorOffset,focus:p.focusNode,focusOffset:p.focusOffset}:null;let m=-1,g=-1;for(let f=0;f<h.length&&f<t.length;f++){const v=h.charCodeAt(f),b=t.charCodeAt(f);v!==b&&M(v,b)&&(m<0&&(m=f),g=f)}const a=m>=0;if(a&&r.replaceData(m,g-m+1,t.slice(m,g+1)),a&&w!==null&&w.anchor!==null&&w.focus!==null)try{p.setBaseAndExtent(w.anchor,w.anchorOffset,w.focus,w.focusOffset)}catch{}}var fe=new Set(["html","head","body","frameset"]);function de(e){return e.namespaceURI==="http://www.w3.org/1999/xhtml"&&fe.has(e.localName)}function pe(e){if(e===null||typeof e!="object")return!1;const t=e;if(typeof t.target!="string"||!re.test(t.target)||t.text!==void 0&&typeof t.text!="string")return!1;if(t.attrsSet!==void 0){if(t.attrsSet===null||typeof t.attrsSet!="object")return!1;for(const[r,n]of Object.entries(t.attrsSet))if(!$.test(r)||typeof n!="string")return!1}if(t.attrsRemoved!==void 0){if(!Array.isArray(t.attrsRemoved))return!1;for(const r of t.attrsRemoved)if(typeof r!="string"||!$.test(r))return!1}return!0}function me(e,t){if(e===null||typeof e!="object")return!1;const{seq:r,elements:n}=e;if(typeof r!="number"||!Number.isSafeInteger(r)||!Array.isArray(n)||n.length===0||n.length>64)return!1;for(let s=0;s<n.length;s++)if(!t(n[s]))return!1;return!0}function he(e){return e===null||typeof e!="object"?!1:me(e.__frame_patch,pe)}function _e(e){if(e===null||typeof e!="object")return!1;const t=e.__frame_init;return t!==null&&typeof t=="object"}function ve(e){return e!==null&&typeof e=="object"&&e.__frame_size_poke===!0}function ye(e){if(e===null||typeof e!="object")return!1;const t=e.__frame_theme;if(t===null||typeof t!="object")return!1;const r=t.theme;return typeof r=="string"&&te.includes(r)}var A=/^[\w.-]+\.js$/;function we(e,t,r){return r?"inert":typeof t=="string"&&A.test(t)?e?[t]:"inert":e?"inert":"framed"}function ge(){return{post(e,t){parent.postMessage(e,t)},on(e){const t=r=>{r.source===parent&&e(r.data,r.origin,r.isTrusted)};return addEventListener("message",t),()=>removeEventListener("message",t)}}}function be(){return{post:()=>{},on:()=>()=>{}}}var j="__frame_scroll",Ee=150,Ae=310,Se=160,Te=3e4;function ke(){let e=0,t=!1,r=!1,n=!1,s=0,o=null;const i=l=>{try{sessionStorage.setItem(j,JSON.stringify({y:l}))}catch{}},c=()=>{if(clearTimeout(e),o===null)return;const l=o;o=null,i(l)},h=()=>{if(t){t=!1;return}r=!0,o=scrollY,clearTimeout(e),e=setTimeout(c,Ee)};try{addEventListener("scroll",h,{passive:!0}),addEventListener("pagehide",c)}catch{}const p=()=>{let l;try{l=sessionStorage.getItem(j)}catch{return null}if(l===null)return null;let _;try{_=JSON.parse(l)}catch{_=null}const d=_?.y;if(!(typeof d=="number"&&Number.isFinite(d)&&d>=0)){try{sessionStorage.removeItem(j)}catch{}return null}return d};let w=!1;const m=l=>{try{const _=scrollY;scrollTo({top:l,left:0,behavior:"instant"}),s=l,n=!0,clearTimeout(e),o=null,i(l);const d=scrollY;d!==_&&(t=!0),d!==l&&!w&&(w=!0,addEventListener("load",()=>{try{if(scrollY===d){const T=p();m(T!==null?T:s)}}catch{}},{once:!0}))}catch{}},g=()=>{try{return!!location.hash}catch{return!0}};let a=!1;const f=()=>{try{if(a||innerWidth>Ae||innerHeight>Se)return;a=!0;const l=Date.now(),_=()=>{try{removeEventListener("resize",_)}catch{}if(Date.now()-l>Te||r||g())return;const d=p();m(d!==null?d:s)};addEventListener("resize",_)}catch{}};let v=!1,b=!1;return{restore(){if(v||(v=!0,g()))return;const l=p();l!==null&&(m(l),f())},promoted(){if(b||(b=!0,g()))return;const l=p();l!==null?(m(l),f()):n&&m(s)}}}function Re(e,t,r,n){let s=null;try{s=window.trustedTypes?.createPolicy("frame-runtime",{createScriptURL:h=>h})??null}catch{}const o=window.Worker,i=o?.prototype,c=Object.freeze({Worker:o,workerOn:i?.addEventListener,workerPost:i?.postMessage,workerTerminate:i?.terminate,fetch:window.fetch.bind(window),preventDefault:Event.prototype.preventDefault,policy:s,origins:t});r(e).then(h=>h?.bootTopLevel?h.bootTopLevel(c,n):n.settle()).catch(()=>n.settle())}var De="modulepreload",Ie=function(e){return"/"+e},Ue={},Le=function(t,r,n){let s=Promise.resolve();function o(i){const c=new Event("vite:preloadError",{cancelable:!0});if(c.payload=i,window.dispatchEvent(c),!c.defaultPrevented)throw i}return s.then(i=>{for(const c of i||[])c.status==="rejected"&&o(c.reason);return t().catch(o)})},Oe=window===top,q=Object.getOwnPropertyDescriptor(window,"claude"),k=we(Oe,window.__FRAME_PREAMBLE?.topLevel,q?.writable===!1),N=typeof k=="object"&&k[0],y=N?be():ge();(function(){const e=Object.defineProperty,t=globalThis,r=["RTCPeerConnection","webkitRTCPeerConnection","RTCDataChannel","RTCIceCandidate","RTCSessionDescription","RTCRtpSender","RTCRtpReceiver"];let n=0;for(let s=0;s<r.length;s++){const o=r[s];try{e(t,o,{value:void 0,writable:!1,configurable:!1})}catch{try{delete t[o]}catch{}try{e(t,o,{value:void 0,writable:!1,configurable:!0})}catch{}}typeof t[o]=="function"&&n++}if(n&&k==="framed")try{y.post({__frame_rtc_lockdown_failed:n},"*")}catch{}})();var Pe=1e4,Y=Object.freeze([...window.__FRAME_PREAMBLE?.origins??["https://claude.ai","https://preview.claude.ai"]]);function X(e){for(const t of Y)if(t.endsWith(":*"))try{const r=new URL(e);if(`${r.protocol}//${r.hostname}:*`===t)return!0}catch{}else if(e===t)return!0;return!1}var R=Object.freeze({...window.__FRAME_PREAMBLE?.capabilities}),B=window.__FRAME_PREAMBLE?.transforms,D=window.__FRAME_PREAMBLE?.comments,I=window.__FRAME_PREAMBLE?.translate;function S(e){return Le(()=>import("/_runtime/"+e),void 0)}function G(e,t){return{contract:e.contract,changes:new Set(e.changes??[]),flags:new Set(e.flags??[]),capabilities:e.capabilities??{},capBudgets:e.capBudgets??{},transforms:new Map,shellOrigin:t,mount:x,hooks:O,pipe:()=>({wrap:(r,n)=>(...s)=>{try{return n(...s)}catch(o){return Promise.reject(o)}}})}}var L=null,E=null;function V(e,t,r){try{Object.defineProperty(e,t,{value:r,writable:!1,configurable:!1,enumerable:!0})}catch{try{Object.defineProperty(e,t,{value:r,writable:!1,configurable:!0,enumerable:!0})}catch{}}}var U=!1,O={editBefore:null,edit:null};function Ce(e,t,r=!1){const n=[];let s;if(r)try{O.editBefore?.(e)}catch{}for(const o of e.elements){const i=document.querySelector(`[data-id="${o.target}"]`);if(!i){s=o.target;break}if([...Object.keys(o.attrsSet??{}),...o.attrsRemoved??[]].some(c=>!oe(c))){s=o.target;break}if(o.text!==void 0&&(!ce(i)||de(i))){s=o.target;break}for(const[c,h]of Object.entries(o.attrsSet??{}))if(!J(i,c)){try{i.setAttribute(c,h)}catch{}Z(i,c,h)}for(const c of o.attrsRemoved??[])J(i,c)||(i.removeAttribute(c),Z(i,c,null));typeof o.text=="string"&&ue(i,o.text),n.push(o.target)}if(r)try{O.edit?.(e.seq,n,s)}catch{}if(s!==void 0){y.post({__frame_patch_miss:{seq:e.seq}},t);return}try{document.dispatchEvent(new CustomEvent("claude:edit",{detail:{seq:e.seq,targets:n}}))}catch{}}function Z(e,t,r){if(!(e instanceof HTMLInputElement))return;const n=t.toLowerCase();n==="checked"?e.checked=r!==null:n==="value"&&e.type!=="file"&&(e.value=r??"")}function J(e,t){const r=t.toLowerCase(),n=e;return r==="data-id"||(r==="value"||r==="checked")&&(n.__artifactSecret===!0||/^(password|hidden|file)$/.test(n.type??"")||/(^|\s)(cc-|one-time-code|current-password|new-password)/i.test(`${e.getAttribute("autocomplete")??""} ${n.autocomplete??""}`))}function Q(e){const t=document.documentElement;e==="light"||e==="dark"?(t.dataset.theme=e,t.style.colorScheme=e,U=!0):U&&(delete t.dataset.theme,t.style.colorScheme="",U=!1)}var P=new Map;function Me(){let e;const t={u:new Promise(r=>{e=r}),r:r=>{t.done=!0,e(r)},done:!1,nulled:!1};return t}function F(){for(const e of P.values())e.done||(e.nulled=!0,e.r(null))}var je=Object.freeze(Object.assign(Object.create(null),{call:Function.prototype.call,apply:Function.prototype.apply,bind:Function.prototype.bind})),x=(e,t)=>{const r=P.get(e);if(!r||r.done){r?.nulled&&E&&y.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:e}},E);return}const n=typeof t=="function"?Object.setPrototypeOf(t,je):Object.assign(Object.create(null),t);typeof n.then=="function"&&delete n.then,r.r(Object.freeze(n))};function ee(){const e=q?.value??{};V(window,"claude",e);for(const t of Object.keys(R)){if(e[t]!==void 0){V(e,t,e[t]);continue}P.set(t,Me())}if(e.use===void 0){const t=r=>{if(typeof r!="string"||!Object.hasOwn(R,r))return Promise.resolve(null);const n=P.get(r);return n?n.u:Promise.resolve(e[r]??null)};try{Object.defineProperty(e,"use",{value:t,writable:!0,configurable:!0,enumerable:!1})}catch{}}}if(k==="framed"){const e=B&&A.test(B)?S(B).catch(()=>{}):Promise.resolve(void 0),t=a=>{if(a.type==="auxclick"&&a.button!==1)return;const f=a.target,v=f&&f.closest?f.closest("a[href],area[href]"):null;if(!v)return;const b=v.getAttribute("href");if(!b)return;let l;try{l=new URL(b,document.baseURI)}catch{return}if((l.protocol==="http:"||l.protocol==="https:")&&l.origin!==location.origin){a.preventDefault();const _=(v.getAttribute("target")??"").toLowerCase(),d=a.type==="auxclick"||a.metaKey||a.ctrlKey||a.shiftKey||a.altKey||!["","_self","_top","_parent"].includes(_);y.post({__frame_nav:!0,url:l.href,newTab:d},"*")}};addEventListener("click",t,!0),addEventListener("auxclick",t,!0);const r={},n=a=>{a.isTrusted&&(r.pointer=!0)},s=a=>{a.isTrusted&&(r.click=!0)};addEventListener("pointermove",n,{capture:!0,passive:!0}),addEventListener("click",s,{capture:!0,passive:!0}),e.then(a=>{a?.wireNav&&(a.wireNav(),removeEventListener("click",t,!0),removeEventListener("auxclick",t,!0),removeEventListener("pointermove",n,!0),removeEventListener("click",s,!0),a.wireEngagement?.(r))});let o=null;try{o=ke()}catch{}ee();let i=null,c=null,h=0;const p=y.on((a,f)=>{X(f)&&_e(a)&&(i=a.__frame_init,E=f,p(),clearTimeout(h),c?.())});y.post({__frame_connect:!0},"*");const w=new Promise(a=>{c=a,h=setTimeout(()=>{p(),a()},Pe)}),m=document.readyState==="loading"?new Promise(a=>document.addEventListener("DOMContentLoaded",()=>a(),{once:!0})):Promise.resolve();m.then(()=>{try{o?.restore()}catch{}});const g={cb:null};y.on((a,f)=>{if(X(f)&&ve(a)){try{o?.promoted()}catch{}g.cb?.()}}),w.then(async()=>{if(!i||!E){F();return}Q(i.theme);const a=E;let f=!1,v=!1;y.on((u,z,C)=>{if(z!==a)return;ye(u)&&Q(u.__frame_theme.theme),he(u)&&Ce(u.__frame_patch,a,C);const H=u?.__fc_mode;H&&typeof H=="object"&&!f&&D&&A.test(D)&&(f=!0,S(D).then(K=>K.install?.(a,H.on===!0)).catch(()=>{}));const W=u?.__ft_cmd;W&&typeof W=="object"&&!v&&I&&A.test(I)&&(v=!0,S(I).then(K=>K.install?.(a,W)).catch(()=>{}))});const b=Object.keys(i.capabilities??{}).filter(u=>Object.hasOwn(R,u)).map(u=>[u,R[u]]).filter(u=>typeof u[1]=="string"&&A.test(u[1])),l=await Promise.allSettled(b.map(([,u])=>S(u))),_=await e,d=E;if(_?.buildBoot||y.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:"_transforms"}},d),_?.buildBoot)try{L=_.buildBoot(i,_.TRANSFORMS??{},{shellOrigin:d,mount:x,hooks:O},u=>y.post({__frame_cap_telemetry:u},d))}catch{y.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:"_transforms"}},d),L=G(i,d)}else L=G(i,d);const T=u=>y.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:u}},d),Ne=L;l.forEach((u,z)=>{const C=b[z][0];if(u.status!=="fulfilled"){T(C);return}try{u.value?.install?.(Ne)}catch{T(C)}}),F(),await m,y.post({__frame_ready:!0},E),e.then(u=>u?.installSizeReporter?.(d,g))})}else N&&(ee(),Re(N,Y,S,{settle:F,mount:x}))})();</script><!-- /frame-runtime --><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>Doctor Pooper Batch Testing</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:wght@600;700&display=swap">
+<style>
+:root {
+  --bg: #f7f5f2;
+  --bg-card: #ffffff;
+  --bg-row-alt: #f2efeb;
+  --bg-expand: #eae6e0;
+  --text: #1a2332;
+  --text-secondary: #5c6370;
+  --text-muted: #8a8f99;
+  --border: #d8d3cc;
+  --border-light: #e8e4de;
+  --accent: #2a8f82;
+  --accent-hover: #237a6f;
+  --green: #2d9b4e;
+  --green-bg: #e8f5ec;
+  --amber: #b8860b;
+  --amber-bg: #fdf3e0;
+  --red: #c44536;
+  --red-bg: #fce8e6;
+  --purple: #6b5b95;
+  --purple-bg: #f0ecf5;
+  --tag-active: #2d9b4e;
+  --tag-active-bg: #e8f5ec;
+  --tag-inactive: #b8860b;
+  --tag-inactive-bg: #fdf3e0;
+  --tag-archived: #8a8f99;
+  --tag-archived-bg: #eeeef0;
+  --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Source Serif 4', Georgia, serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131a24;
+    --bg-card: #1a2332;
+    --bg-row-alt: #1e2a3a;
+    --bg-expand: #243244;
+    --text: #e2e5ea;
+    --text-secondary: #9aa3b0;
+    --text-muted: #6b7280;
+    --border: #2d3a4d;
+    --border-light: #253040;
+    --accent: #3db5a5;
+    --accent-hover: #4fc9b9;
+    --green: #4aba6a;
+    --green-bg: #1a2f22;
+    --amber: #d4a030;
+    --amber-bg: #2a2518;
+    --red: #e05c4d;
+    --red-bg: #2f1c1a;
+    --purple: #9180c4;
+    --purple-bg: #1f1a30;
+    --tag-active: #4aba6a;
+    --tag-active-bg: #1a2f22;
+    --tag-inactive: #d4a030;
+    --tag-inactive-bg: #2a2518;
+    --tag-archived: #6b7280;
+    --tag-archived-bg: #1e2530;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131a24;
+  --bg-card: #1a2332;
+  --bg-row-alt: #1e2a3a;
+  --bg-expand: #243244;
+  --text: #e2e5ea;
+  --text-secondary: #9aa3b0;
+  --text-muted: #6b7280;
+  --border: #2d3a4d;
+  --border-light: #253040;
+  --accent: #3db5a5;
+  --accent-hover: #4fc9b9;
+  --green: #4aba6a;
+  --green-bg: #1a2f22;
+  --amber: #d4a030;
+  --amber-bg: #2a2518;
+  --red: #e05c4d;
+  --red-bg: #2f1c1a;
+  --purple: #9180c4;
+  --purple-bg: #1f1a30;
+  --tag-active: #4aba6a;
+  --tag-active-bg: #1a2f22;
+  --tag-inactive: #d4a030;
+  --tag-inactive-bg: #2a2518;
+  --tag-archived: #6b7280;
+  --tag-archived-bg: #1e2530;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 24px 20px 60px; }
+
+header {
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+header h1 {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+header .date-range {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* Summary tiles */
+.summary-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.tile {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 16px 18px;
+}
+.tile-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.tile-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.tile-sub {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* Filter bar */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.filter-bar label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-right: 4px;
+}
+.filter-btn {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 5px 14px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.filter-btn:hover { border-color: var(--accent); color: var(--text); }
+.filter-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.filter-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.sort-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.sort-bar label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.sort-select {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg-card);
+  color: var(--text);
+  cursor: pointer;
+}
+.sort-select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.status-filter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+/* Ad set rows */
+.adset-list { display: flex; flex-direction: column; gap: 2px; }
+
+.adset-row {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+}
+.adset-row:hover { border-color: var(--border); }
+.adset-row.expanded { border-color: var(--accent); }
+
+.adset-header {
+  display: grid;
+  grid-template-columns: 28px 1fr 80px 72px 72px 80px 80px 56px;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.1s ease;
+}
+.adset-header:hover { background: var(--bg-row-alt); }
+.adset-header:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.expand-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: transform 0.2s ease;
+  font-size: 0.75rem;
+}
+.expanded .expand-icon { transform: rotate(90deg); }
+
+.adset-name {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+.adset-name .product-tag {
+  display: inline-block;
+  font-size: 0.625rem;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-right: 6px;
+  letter-spacing: 0.04em;
+  vertical-align: 1px;
+}
+.product-tag.dfc { background: var(--green-bg); color: var(--green); }
+.product-tag.dfk { background: var(--purple-bg); color: var(--purple); }
+.product-tag.dcm { background: var(--amber-bg); color: var(--amber); }
+
+.metric {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.metric.secondary { color: var(--text-secondary); font-weight: 400; }
+.metric.good { color: var(--green); }
+.metric.warn { color: var(--amber); }
+.metric.bad { color: var(--red); }
+.metric.na { color: var(--text-muted); font-weight: 400; font-style: italic; }
+
+.status-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 2px;
+  vertical-align: 1px;
+}
+.status-dot.active { background: var(--tag-active); }
+.status-dot.inactive { background: var(--tag-inactive); }
+.status-dot.archived, .status-dot.not_delivering { background: var(--tag-archived); }
+
+.delivery-tag {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: flex-end;
+}
+
+/* Column headers */
+.col-headers {
+  display: grid;
+  grid-template-columns: 28px 1fr 80px 72px 72px 80px 80px 56px;
+  gap: 8px;
+  padding: 6px 14px;
+  margin-bottom: 2px;
+}
+.col-header {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: right;
+  cursor: pointer;
+}
+.col-header:first-child, .col-header:nth-child(2) { text-align: left; }
+.col-header:hover { color: var(--text-secondary); }
+.col-header.sorted { color: var(--accent); }
+
+/* Expanded ad detail */
+.adset-detail {
+  border-top: 1px solid var(--border-light);
+  background: var(--bg-expand);
+  padding: 12px 14px 14px;
+}
+.ad-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.ad-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+.ad-table th {
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.625rem;
+  padding: 6px 8px;
+  text-align: right;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--bg-expand);
+}
+.ad-table th:first-child { text-align: left; }
+.ad-table td {
+  padding: 7px 8px;
+  text-align: right;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--border-light);
+}
+.ad-table td:first-child {
+  text-align: left;
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+}
+.ad-table tr:last-child td { border-bottom: none; }
+.ad-table tr:nth-child(even) td { background: rgba(0,0,0,0.02); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ad-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+}
+:root[data-theme="dark"] .ad-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+.rank-badge {
+  display: inline-block;
+  font-size: 0.625rem;
+  font-weight: 600;
+  padding: 1px 5px;
+  border-radius: 3px;
+  letter-spacing: 0.02em;
+}
+.rank-badge.above { background: var(--green-bg); color: var(--green); }
+.rank-badge.average { background: var(--bg-card); color: var(--text-secondary); border: 1px solid var(--border-light); }
+.rank-badge.below { background: var(--red-bg); color: var(--red); }
+.rank-badge.na { color: var(--text-muted); background: none; }
+
+.video-bar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 14px;
+}
+.video-bar-segment {
+  height: 10px;
+  border-radius: 1px;
+  min-width: 3px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+/* Section labels for tabs */
+.section-tabs {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 4px;
+}
+.section-tab {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.section-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.section-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.ad-delivery {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.ad-delivery .status-dot { width: 5px; height: 5px; }
+
+@media (max-width: 900px) {
+  .adset-header {
+    grid-template-columns: 24px 1fr 70px 64px 64px;
+  }
+  .adset-header .hide-mobile { display: none; }
+  .col-headers {
+    grid-template-columns: 24px 1fr 70px 64px 64px;
+  }
+  .col-headers .hide-mobile { display: none; }
+}
+
+.no-purchases { opacity: 0.5; }
+</style>
+
+<div class="container">
+  <header>
+    <h1>Batch Testing Results</h1>
+    <div class="date-range">Doctor Pooper · Aug 1 – Sep 2, 2026 · Meta Ads (pixel-reported)</div>
+  </header>
+
+  <div class="summary-row" id="summary"></div>
+
+  <div class="filter-bar">
+    <label>Product</label>
+    <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">All</button>
+    <button class="filter-btn" data-filter="DFC" onclick="setFilter('DFC')">DFC</button>
+    <button class="filter-btn" data-filter="DFK" onclick="setFilter('DFK')">DFK</button>
+    <button class="filter-btn" data-filter="DCM" onclick="setFilter('DCM')">DCM</button>
+
+    <div class="status-filter">
+      <label>Status</label>
+      <button class="filter-btn active" data-status="all" onclick="setStatus('all')">All</button>
+      <button class="filter-btn" data-status="with-spend" onclick="setStatus('with-spend')">With spend</button>
+      <button class="filter-btn" data-status="active" onclick="setStatus('active')">Active</button>
+    </div>
+  </div>
+
+  <div class="sort-bar">
+    <label>Sort by</label>
+    <select class="sort-select" id="sortSelect" onchange="changeSort(this.value)">
+      <option value="spend-desc">Spend (high → low)</option>
+      <option value="spend-asc">Spend (low → high)</option>
+      <option value="roas-desc">ROAS (high → low)</option>
+      <option value="roas-asc">ROAS (low → high)</option>
+      <option value="cpa-asc">CPA (low → high)</option>
+      <option value="cpa-desc">CPA (high → low)</option>
+      <option value="purchases-desc">Purchases (high → low)</option>
+      <option value="name-asc">Name (A → Z)</option>
+    </select>
+  </div>
+
+  <div class="col-headers">
+    <div></div>
+    <div class="col-header" style="text-align:left">Ad Set</div>
+    <div class="col-header">Spend</div>
+    <div class="col-header">Purchases</div>
+    <div class="col-header">ROAS</div>
+    <div class="col-header hide-mobile">CPA</div>
+    <div class="col-header hide-mobile">CPM</div>
+    <div class="col-header">Status</div>
+  </div>
+
+  <div class="adset-list" id="adsetList"></div>
+</div>
+
+<script>
+const DATA = {"adsets": [{"name": "8/13/26__Batch-281", "product": "DFC", "delivery": "archived", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "8/13/26__Batch-274", "product": "DFC", "delivery": "archived", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "8/13/26__Batch-281-MaxConversions-AllCustomers", "product": "DFC", "delivery": "inactive", "spend": 1369.95, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 48159, "reach": 23793, "frequency": 2.024, "cpm": 28.45, "budget": 200.0}, {"name": "8/13/26__Batch-274-MaxConversions-AllCustomers", "product": "DFC", "delivery": "inactive", "spend": 317.56, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 2761, "reach": 2761, "frequency": 1.0, "cpm": 115.02, "budget": 200.0}, {"name": "8/13/26__Batch-296-MaxConversions-AllCustomers", "product": "DFC", "delivery": "inactive", "spend": 1068.68, "purchases": 15, "roas": 1.1034, "cpa": 71.25, "impressions": 28824, "reach": 20643, "frequency": 1.396, "cpm": 37.08, "budget": 200.0}, {"name": "8/17/26__#283__DFC - Catching a friend UGC", "product": "DFC", "delivery": "inactive", "spend": 736.44, "purchases": 12, "roas": 1.1032, "cpa": 61.37, "impressions": 16526, "reach": 11260, "frequency": 1.468, "cpm": 44.56, "budget": 100.0}, {"name": "8/17/26__#308__DFC Iteration #118.2 - Problem-led Static", "product": "DFC", "delivery": "active", "spend": 1604.48, "purchases": 14, "roas": 0.6654, "cpa": 114.61, "impressions": 77855, "reach": 38240, "frequency": 2.036, "cpm": 20.61, "budget": 100.0}, {"name": "8/17/26__#299__DFC Benefits Static", "product": "DFC", "delivery": "active", "spend": 1608.67, "purchases": 9, "roas": 0.4728, "cpa": 178.74, "impressions": 65328, "reach": 26982, "frequency": 2.421, "cpm": 24.62, "budget": 100.0}, {"name": "8/17/26__#314&#317__DFC - Founder - Failed solutions & Septic pros", "product": "DFC", "delivery": "active", "spend": 1600.32, "purchases": 15, "roas": 0.6659, "cpa": 106.69, "impressions": 49845, "reach": 33269, "frequency": 1.498, "cpm": 32.11, "budget": 100.0}, {"name": "8/17/26__Batch-307-MaxConversions-AllCustomers", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "8/17/26__Batch-311-MaxConversions-AllCustomers", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "8/17/26__Batch-252-MaxConversions-AllCustomers", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "08/22/26__#291__DFC Meme Static", "product": "DFC", "delivery": "inactive", "spend": 789.57, "purchases": 12, "roas": 1.0662, "cpa": 65.8, "impressions": 44580, "reach": 28255, "frequency": 1.578, "cpm": 17.71, "budget": 200.0}, {"name": "08/22/26__#279__DFC Iteration on #91.3 - Video to Static", "product": "DFC", "delivery": "active", "spend": 2433.97, "purchases": 31, "roas": 0.8693, "cpa": 78.52, "impressions": 95192, "reach": 40812, "frequency": 2.332, "cpm": 25.57, "budget": 200.0}, {"name": "08/29/26__#302__DFC - Bold Headline Static", "product": "DFC", "delivery": "active", "spend": 1086.77, "purchases": 12, "roas": 0.9158, "cpa": 90.56, "impressions": 34194, "reach": 17825, "frequency": 1.918, "cpm": 31.78, "budget": 200.0}, {"name": "08/29/26__#298__DFC Value pack Static", "product": "DFC", "delivery": "active", "spend": 1030.39, "purchases": 11, "roas": 0.9331, "cpa": 93.67, "impressions": 37895, "reach": 16478, "frequency": 2.3, "cpm": 27.19, "budget": 200.0}, {"name": "08/22/26__#278__DFC Iteration on #210 - Hooks AI Greenscreen - Mashup", "product": "DFC", "delivery": "inactive", "spend": 766.17, "purchases": 16, "roas": 1.2786, "cpa": 47.89, "impressions": 20415, "reach": 16061, "frequency": 1.271, "cpm": 37.53, "budget": 200.0}, {"name": "08/29/26__#275__DFC Iteration on #196.3 Video to Static", "product": "DFC", "delivery": "active", "spend": 1082.19, "purchases": 13, "roas": 1.0517, "cpa": 83.25, "impressions": 49491, "reach": 31300, "frequency": 1.581, "cpm": 21.87, "budget": 200.0}, {"name": "08/29/26__#286__DFC - Press Release Static", "product": "DFC", "delivery": "active", "spend": 1060.46, "purchases": 10, "roas": 0.6298, "cpa": 106.05, "impressions": 41704, "reach": 28313, "frequency": 1.473, "cpm": 25.43, "budget": 200.0}, {"name": "8/17/26__#307__DFC - Iteration #92.1 - Mashup to UGC", "product": "DFC", "delivery": "active", "spend": 1610.73, "purchases": 13, "roas": 0.6423, "cpa": 123.9, "impressions": 37975, "reach": 27636, "frequency": 1.374, "cpm": 42.42, "budget": 100.0}, {"name": "8/17/26__#311__DFC - Text wall Mashup", "product": "DFC", "delivery": "active", "spend": 1613.43, "purchases": 20, "roas": 0.7767, "cpa": 80.67, "impressions": 37835, "reach": 20944, "frequency": 1.806, "cpm": 42.64, "budget": 100.0}, {"name": "8/17/26__#252__DFC Not Bacteria Mechanism Static", "product": "DFC", "delivery": "active", "spend": 1592.59, "purchases": 16, "roas": 0.8351, "cpa": 99.54, "impressions": 58536, "reach": 25457, "frequency": 2.299, "cpm": 27.21, "budget": 100.0}, {"name": "8/27/26__CM-Batch001__DFC", "product": "DFC", "delivery": "active", "spend": 1202.55, "purchases": 12, "roas": 0.7754, "cpa": 100.21, "impressions": 20475, "reach": 11083, "frequency": 1.847, "cpm": 58.73, "budget": 100.0}, {"name": "8/29/26__Manus-Statics__DCM", "product": "DCM", "delivery": "active", "spend": 1084.05, "purchases": 11, "roas": 0.6052, "cpa": 98.55, "impressions": 34335, "reach": 22840, "frequency": 1.503, "cpm": 31.57, "budget": 200.0}, {"name": "8/29/26__Manus-Statics__DFC", "product": "DFC", "delivery": "active", "spend": 793.17, "purchases": 10, "roas": 0.9251, "cpa": 79.32, "impressions": 27817, "reach": 16460, "frequency": 1.69, "cpm": 28.51, "budget": 200.0}, {"name": "08/29/26__#287__DFC - Search-Solution Static", "product": "DFC", "delivery": "inactive", "spend": 453.62, "purchases": 1, "roas": 0.1421, "cpa": 453.62, "impressions": 12923, "reach": 9871, "frequency": 1.309, "cpm": 35.1, "budget": 200.0}, {"name": "MM/DD/YY__#249__DFC - 5 Reasons - Static", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "MM/DD/YY__#246__DFC Iteration of DFC Bundle Banners Static", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "MM/DD/YY__#247__DFC Hidden Problem Static", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "MM/DD/YY__#245__DFC Iteration of #176.3 Video", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "MM/DD/YY__#244__DFC Iteration of #166.2 Video", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "MM/DD/YY__#250__DFC Financial Warning Static", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "MM/DD/YY__#251__DFC Checklist Warning Signs Static", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "MM/DD/YY__#253__DFC Bacteria HR Manager Humor Static", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "MM/DD/YY__#255__DFC - Cost of replacement - UGC", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "MM/DD/YY__#225__4 Things NEVER to Flush Reminder DFC Static", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "MM/DD/YY__#224__Ditch pumpouts DFC Bundle Static", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "MM/DD/YY__#215__ASMR DFC bundle Mashup", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "MM/DD/YY__#237__Iteration of #75 Testimonial static to AI avatar DFC Mashup", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "MM/DD/YY__#234__Iteration of #149 V3 Hook to DFC static", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "MM/DD/YY__#239__Iteration of #91 Hook to DFC static", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "MM/DD/YY__#223__3 signs listicle DFC static", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "MM/DD/YY__#226__Before You Call the Pump-Out DFC Static", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "MM/DD/YY__#227__Reminder DFC Bundle Static", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "MM/DD/YY__#241__Iteration of #147 UGC to DFC static", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "MM/DD/YY__#243__Iteration of #177 Whiteboard UGC DFC", "product": "DFC", "delivery": "inactive", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "8/17/26__#306__DFK - Iteration 114.3 - New creator - UGC", "product": "DFK", "delivery": "active", "spend": 1629.91, "purchases": 24, "roas": 0.7148, "cpa": 67.91, "impressions": 24053, "reach": 15227, "frequency": 1.58, "cpm": 67.76, "budget": 100.0}, {"name": "8/17/26__#305__DFK - Iteration #107.3 Hooks & AI greenscreen", "product": "DFK", "delivery": "active", "spend": 1627.39, "purchases": 26, "roas": 0.752, "cpa": 62.59, "impressions": 29906, "reach": 19456, "frequency": 1.537, "cpm": 54.42, "budget": 100.0}, {"name": "8/17/26__#304__DFK- Iteration #107.3 - Illustration Static", "product": "DFK", "delivery": "active", "spend": 1605.76, "purchases": 27, "roas": 0.8367, "cpa": 59.47, "impressions": 42413, "reach": 21024, "frequency": 2.017, "cpm": 37.86, "budget": 100.0}, {"name": "8/17/26__#293__DFK - Fly POV animation Video", "product": "DFK", "delivery": "active", "spend": 1609.36, "purchases": 11, "roas": 0.4268, "cpa": 146.31, "impressions": 27541, "reach": 19574, "frequency": 1.407, "cpm": 58.44, "budget": 100.0}, {"name": "8/13/26__Batch-282", "product": "DFC", "delivery": "archived", "spend": 0.0, "purchases": 0, "roas": 0.0, "cpa": null, "impressions": 0, "reach": 0, "frequency": 0.0, "cpm": 0.0, "budget": 200.0}, {"name": "8/13/26__Batch-282-MaxConversions", "product": "DFC", "delivery": "inactive", "spend": 1117.03, "purchases": 3, "roas": 0.1843, "cpa": 372.34, "impressions": 14361, "reach": 8193, "frequency": 1.753, "cpm": 77.78, "budget": 200.0}, {"name": "8/29/26__#303__DFK - Digital UI Static", "product": "DFK", "delivery": "active", "spend": 1291.6, "purchases": 17, "roas": 0.8516, "cpa": 75.98, "impressions": 41808, "reach": 25250, "frequency": 1.656, "cpm": 30.89, "budget": 200.0}, {"name": "8/21/26__CM-Batch001__DFK", "product": "DFK", "delivery": "active", "spend": 1164.67, "purchases": 17, "roas": 0.6104, "cpa": 68.51, "impressions": 16504, "reach": 9252, "frequency": 1.784, "cpm": 70.57, "budget": 100.0}], "ads": [{"n": "Ad-001-Batch-274.1-DFC", "as": "8/13/26__Batch-274-MaxConversions-AllCustomers", "p": "DFC", "d": "not_delivering", "s": 13.37, "pu": 0, "r": 0.0, "cpa": null, "imp": 111, "cr": "-", "qr": "-", "er": "-", "lc": 1, "ctr": 0.9, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-001-Batch-274.1-DFC -Bundle-URL", "as": "8/13/26__Batch-274-MaxConversions-AllCustomers", "p": "DFC", "d": "not_delivering", "s": 63.81, "pu": 0, "r": 0.0, "cpa": null, "imp": 688, "cr": "-", "qr": "-", "er": "-", "lc": 4, "ctr": 0.58, "lv": 3, "cv": 3, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-003-Batch-274.3-DFC -Bundle-URL", "as": "8/13/26__Batch-274-MaxConversions-AllCustomers", "p": "DFC", "d": "not_delivering", "s": 99.13, "pu": 0, "r": 0.0, "cpa": null, "imp": 873, "cr": "-", "qr": "-", "er": "-", "lc": 4, "ctr": 0.57, "lv": 3, "cv": 2, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-002-Batch-274.2-DFC -Bundle-URL", "as": "8/13/26__Batch-274-MaxConversions-AllCustomers", "p": "DFC", "d": "not_delivering", "s": 37.71, "pu": 0, "r": 0.0, "cpa": null, "imp": 197, "cr": "-", "qr": "-", "er": "-", "lc": 1, "ctr": 0.51, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-002-Batch-274.2-DFC", "as": "8/13/26__Batch-274-MaxConversions-AllCustomers", "p": "DFC", "d": "not_delivering", "s": 6.07, "pu": 0, "r": 0.0, "cpa": null, "imp": 53, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 0.0, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-003-Batch-274.3-DFC", "as": "8/13/26__Batch-274-MaxConversions-AllCustomers", "p": "DFC", "d": "not_delivering", "s": 97.47, "pu": 0, "r": 0.0, "cpa": null, "imp": 839, "cr": "-", "qr": "-", "er": "-", "lc": 4, "ctr": 0.72, "lv": 4, "cv": 4, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-003-Batch-282.1-DFK", "as": "8/13/26__Batch-282-MaxConversions", "p": "DFK", "d": "not_delivering", "s": 228.33, "pu": 0, "r": 0.0, "cpa": null, "imp": 2805, "cr": "Average", "qr": "Average", "er": "Average", "lc": 43, "ctr": 2.99, "lv": 43, "cv": 39, "atc": 1, "v25": 146, "v50": 71, "v75": 45, "v95": 27, "v100": 22, "tp": 200, "ctp": 1.14, "apt": "6", "hv": true}, {"n": "Ad-002-Batch-282.2-DFK", "as": "8/13/26__Batch-282-MaxConversions", "p": "DFK", "d": "inactive", "s": 582.54, "pu": 2, "r": 0.1819, "cpa": 291.27, "imp": 7357, "cr": "Below average - Bottom 35% of ads", "qr": "Average", "er": "Below average - Bottom 35% of ads", "lc": 109, "ctr": 2.54, "lv": 108, "cv": 118, "atc": 7, "v25": 418, "v50": 233, "v75": 138, "v95": 74, "v100": 70, "tp": 549, "ctp": 1.06, "apt": "8", "hv": true}, {"n": "Ad-001-Batch-282.1-DFK", "as": "8/13/26__Batch-282-MaxConversions", "p": "DFK", "d": "inactive", "s": 306.16, "pu": 1, "r": 0.3264, "cpa": 306.16, "imp": 4199, "cr": "Average", "qr": "Average", "er": "Average", "lc": 57, "ctr": 2.6, "lv": 51, "cv": 64, "atc": 4, "v25": 234, "v50": 118, "v75": 70, "v95": 41, "v100": 37, "tp": 325, "ctp": 0.94, "apt": "6", "hv": true}, {"n": "Static__#308.3 - DFC Iteration #118.2 - Problem-led Static.png", "as": "8/17/26__#308__DFC Iteration #118.2 - Problem-led Static", "p": "DFC", "d": "inactive", "s": 467.71, "pu": 4, "r": 0.6438, "cpa": 116.93, "imp": 23502, "cr": "Average", "qr": "Average", "er": "Average", "lc": 111, "ctr": 1.05, "lv": 91, "cv": 100, "atc": 6, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Static__#308.1 - DFC Iteration #118.2 - Problem-led Static.png", "as": "8/17/26__#308__DFC Iteration #118.2 - Problem-led Static", "p": "DFC", "d": "active", "s": 651.92, "pu": 6, "r": 0.718, "cpa": 108.65, "imp": 21334, "cr": "Average", "qr": "Above average", "er": "Average", "lc": 132, "ctr": 1.21, "lv": 116, "cv": 142, "atc": 12, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Static__#308.2 - DFC Iteration #118.2 - Problem-led Static.png", "as": "8/17/26__#308__DFC Iteration #118.2 - Problem-led Static", "p": "DFC", "d": "inactive", "s": 485.56, "pu": 4, "r": 0.6145, "cpa": 121.39, "imp": 33032, "cr": "Average", "qr": "Above average", "er": "Average", "lc": 162, "ctr": 1.14, "lv": 141, "cv": 154, "atc": 18, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Video__#307.1 - DFC - Iteration #92.1 - Mashup to UGC", "as": "8/17/26__#307__DFC - Iteration #92.1 - Mashup to UGC", "p": "DFC", "d": "active", "s": 1172.29, "pu": 10, "r": 0.6434, "cpa": 117.23, "imp": 23176, "cr": "Below average - Bottom 35% of ads", "qr": "Average", "er": "Below average - Bottom 35% of ads", "lc": 269, "ctr": 1.91, "lv": 253, "cv": 268, "atc": 23, "v25": 1808, "v50": 889, "v75": 581, "v95": 279, "v100": 232, "tp": 2510, "ctp": 0.47, "apt": "7", "hv": true}, {"n": "Video__#307.2 - DFC - Iteration #92.1 - Mashup to UGC", "as": "8/17/26__#307__DFC - Iteration #92.1 - Mashup to UGC", "p": "DFC", "d": "active", "s": 49.4, "pu": 0, "r": 0.0, "cpa": null, "imp": 1278, "cr": "-", "qr": "-", "er": "-", "lc": 17, "ctr": 2.35, "lv": 15, "cv": 15, "atc": 1, "v25": 71, "v50": 34, "v75": 26, "v95": 12, "v100": 10, "tp": 185, "ctp": 0.27, "apt": "5", "hv": true}, {"n": "Video__#307.3 - DFC - Iteration #92.1 - Mashup to UGC", "as": "8/17/26__#307__DFC - Iteration #92.1 - Mashup to UGC", "p": "DFC", "d": "inactive", "s": 389.17, "pu": 3, "r": 0.72, "cpa": 129.72, "imp": 13526, "cr": "Average", "qr": "Average", "er": "Average", "lc": 113, "ctr": 1.55, "lv": 120, "cv": 119, "atc": 9, "v25": 984, "v50": 483, "v75": 284, "v95": 104, "v100": 89, "tp": 1091, "ctp": 0.36, "apt": "6", "hv": true}, {"n": "Video__#306.1 - DFK - Iteration 114.3 - UGC", "as": "8/17/26__#306__DFK - Iteration 114.3 - New creator - UGC", "p": "DFK", "d": "active", "s": 39.81, "pu": 0, "r": 0.0, "cpa": null, "imp": 536, "cr": "-", "qr": "-", "er": "-", "lc": 5, "ctr": 2.05, "lv": 5, "cv": 6, "atc": 1, "v25": 25, "v50": 8, "v75": 4, "v95": 3, "v100": 2, "tp": 33, "ctp": 1.21, "apt": "4", "hv": true}, {"n": "Video__#306.3 - DFK - Iteration 114.3 - UGC", "as": "8/17/26__#306__DFK - Iteration 114.3 - New creator - UGC", "p": "DFK", "d": "active", "s": 1195.88, "pu": 23, "r": 0.9241, "cpa": 51.99, "imp": 17659, "cr": "Average", "qr": "Average", "er": "Below average - Bottom 35% of ads", "lc": 258, "ctr": 2.13, "lv": 238, "cv": 274, "atc": 29, "v25": 1274, "v50": 690, "v75": 495, "v95": 272, "v100": 222, "tp": 1522, "ctp": 0.79, "apt": "6", "hv": true}, {"n": "Video__#306.2 - DFK - Iteration 114.3 - UGC", "as": "8/17/26__#306__DFK - Iteration 114.3 - New creator - UGC", "p": "DFK", "d": "inactive", "s": 394.58, "pu": 1, "r": 0.152, "cpa": 394.58, "imp": 5864, "cr": "Below average - Bottom 35% of ads", "qr": "Below average - Bottom 35% of ads", "er": "Below average - Bottom 35% of ads", "lc": 87, "ctr": 2.34, "lv": 90, "cv": 90, "atc": 3, "v25": 410, "v50": 212, "v75": 162, "v95": 95, "v100": 78, "tp": 471, "ctp": 0.84, "apt": "6", "hv": true}, {"n": "Ad-003-Batch-278.3-DFC-Video", "as": "08/22/26__#278__DFC Iteration on #210 - Hooks AI Greenscreen - Mashup", "p": "DFC", "d": "not_delivering", "s": 0.0, "pu": 0, "r": 0.0, "cpa": null, "imp": 0, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 0.0, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-002-Batch-278.2-DFC-Video", "as": "08/22/26__#278__DFC Iteration on #210 - Hooks AI Greenscreen - Mashup", "p": "DFC", "d": "not_delivering", "s": 764.82, "pu": 16, "r": 1.2809, "cpa": 47.8, "imp": 20391, "cr": "Average", "qr": "Average", "er": "Below average - Bottom 35% of ads", "lc": 196, "ctr": 1.53, "lv": 182, "cv": 185, "atc": 31, "v25": 2368, "v50": 964, "v75": 672, "v95": 379, "v100": 303, "tp": 1859, "ctp": 0.41, "apt": "5", "hv": true}, {"n": "DFC-Skeptical-Risk-Free-20260827", "as": "8/29/26__Manus-Statics__DFC", "p": "DFC", "d": "active", "s": 6.89, "pu": 0, "r": 0.0, "cpa": null, "imp": 164, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 1.22, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "DFC-500-Pumpout-Expense-20260827", "as": "8/29/26__Manus-Statics__DFC", "p": "DFC", "d": "active", "s": 45.15, "pu": 1, "r": 2.2142, "cpa": 45.15, "imp": 1782, "cr": "-", "qr": "-", "er": "-", "lc": 7, "ctr": 1.23, "lv": 5, "cv": 9, "atc": 2, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "2", "hv": false}, {"n": "DFC-Protect-Yard-15K-Fear-20260827", "as": "8/29/26__Manus-Statics__DFC", "p": "DFC", "d": "active", "s": 329.04, "pu": 5, "r": 1.1841, "cpa": 65.81, "imp": 11222, "cr": "-", "qr": "-", "er": "-", "lc": 72, "ctr": 1.34, "lv": 62, "cv": 76, "atc": 10, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": 1, "ctp": 329.04, "apt": "3", "hv": false}, {"n": "DFC-Slow-Drains-Odors-Symptom-20260827", "as": "8/29/26__Manus-Statics__DFC", "p": "DFC", "d": "active", "s": 11.52, "pu": 0, "r": 0.0, "cpa": null, "imp": 441, "cr": "-", "qr": "-", "er": "-", "lc": 1, "ctr": 0.45, "lv": 1, "cv": 1, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "2", "hv": false}, {"n": "DFC-Tablet-40X-Mechanism-20260827", "as": "8/29/26__Manus-Statics__DFC", "p": "DFC", "d": "inactive", "s": 401.19, "pu": 4, "r": 0.6086, "cpa": 100.3, "imp": 14238, "cr": "Average", "qr": "Average", "er": "Average", "lc": 94, "ctr": 1.27, "lv": 82, "cv": 90, "atc": 6, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "1", "hv": false}, {"n": "Static__#304.3 DFK- Iteration #107.3 - Illustration Static", "as": "8/17/26__#304__DFK- Iteration #107.3 - Illustration Static", "p": "DFK", "d": "active", "s": 1260.02, "pu": 24, "r": 0.9113, "cpa": 52.5, "imp": 32674, "cr": "Average", "qr": "Average", "er": "Average", "lc": 273, "ctr": 1.35, "lv": 260, "cv": 313, "atc": 37, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Static__#304.1 DFK- Iteration #107.3 - Illustration Static", "as": "8/17/26__#304__DFK- Iteration #107.3 - Illustration Static", "p": "DFK", "d": "active", "s": 66.49, "pu": 0, "r": 0.0, "cpa": null, "imp": 1979, "cr": "Average", "qr": "Average", "er": "Above average", "lc": 12, "ctr": 1.26, "lv": 12, "cv": 13, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Static__#304.2 DFK- Iteration #107.3 - Illustration Static", "as": "8/17/26__#304__DFK- Iteration #107.3 - Illustration Static", "p": "DFK", "d": "inactive", "s": 279.26, "pu": 3, "r": 0.6993, "cpa": 93.09, "imp": 7761, "cr": "Average", "qr": "Average", "er": "Above average", "lc": 55, "ctr": 1.28, "lv": 51, "cv": 60, "atc": 5, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Video__#293.2 - DFK - Fly POV animation Video", "as": "8/17/26__#293__DFK - Fly POV animation Video", "p": "DFK", "d": "active", "s": 1039.64, "pu": 8, "r": 0.439, "cpa": 129.96, "imp": 16912, "cr": "Average", "qr": "Average", "er": "Average", "lc": 246, "ctr": 2.44, "lv": 230, "cv": 254, "atc": 11, "v25": 1256, "v50": 884, "v75": 663, "v95": 410, "v100": 302, "tp": 1622, "ctp": 0.64, "apt": "7", "hv": true}, {"n": "Video__#293.3 - DFK - Fly POV animation Video", "as": "8/17/26__#293__DFK - Fly POV animation Video", "p": "DFK", "d": "inactive", "s": 371.83, "pu": 2, "r": 0.3064, "cpa": 185.91, "imp": 7464, "cr": "Average", "qr": "Average", "er": "Average", "lc": 98, "ctr": 1.84, "lv": 95, "cv": 112, "atc": 6, "v25": 468, "v50": 348, "v75": 244, "v95": 148, "v100": 109, "tp": 549, "ctp": 0.68, "apt": "6", "hv": true}, {"n": "Video__#293.1 - DFK - Fly POV animation Video", "as": "8/17/26__#293__DFK - Fly POV animation Video", "p": "DFK", "d": "active", "s": 198.04, "pu": 1, "r": 0.5885, "cpa": 198.04, "imp": 3171, "cr": "-", "qr": "-", "er": "-", "lc": 56, "ctr": 2.4, "lv": 50, "cv": 54, "atc": 2, "v25": 262, "v50": 201, "v75": 143, "v95": 86, "v100": 70, "tp": 293, "ctp": 0.68, "apt": "7", "hv": true}, {"n": "Static__#303.3 DFK - Digital UI Static", "as": "8/29/26__#303__DFK - Digital UI Static", "p": "DFK", "d": "active", "s": 287.59, "pu": 3, "r": 0.441, "cpa": 95.86, "imp": 6625, "cr": "Average", "qr": "Average", "er": "Average", "lc": 38, "ctr": 1.24, "lv": 33, "cv": 40, "atc": 4, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Static__#303.1 DFK - Digital UI Static", "as": "8/29/26__#303__DFK - Digital UI Static", "p": "DFK", "d": "active", "s": 1001.24, "pu": 14, "r": 0.9719, "cpa": 71.52, "imp": 35133, "cr": "Average", "qr": "Average", "er": "Average", "lc": 284, "ctr": 1.51, "lv": 269, "cv": 308, "atc": 24, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Static__#303.2 DFK - Digital UI Static", "as": "8/29/26__#303__DFK - Digital UI Static", "p": "DFK", "d": "active", "s": 3.5, "pu": 0, "r": 0.0, "cpa": null, "imp": 75, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 1.33, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-001-Batch-278.1-DFC-Video", "as": "08/22/26__#278__DFC Iteration on #210 - Hooks AI Greenscreen - Mashup", "p": "DFC", "d": "not_delivering", "s": 1.35, "pu": 0, "r": 0.0, "cpa": null, "imp": 24, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 4.17, "lv": 0, "cv": 0, "atc": 0, "v25": 5, "v50": 2, "v75": 1, "v95": 1, "v100": 1, "tp": 5, "ctp": 0.27, "apt": "8", "hv": true}, {"n": "Ad-004-Video_CM-Batch-001-ugc1.4.mp4-Price-Anchoring-Exterminator-Comparison-Discovery-DFK", "as": "8/21/26__CM-Batch001__DFK", "p": "DFK", "d": "active", "s": 2.93, "pu": 0, "r": 0.0, "cpa": null, "imp": 44, "cr": "-", "qr": "-", "er": "-", "lc": 2, "ctr": 4.55, "lv": 2, "cv": 3, "atc": 0, "v25": 3, "v50": 1, "v75": 1, "v95": 1, "v100": 1, "tp": 3, "ctp": 0.98, "apt": "34", "hv": true}, {"n": "Ad-003-Video_CM-Batch-001-ugc1.3.mp4-Empathy-Frustration-24Hour-Relief-Discovery-DFK", "as": "8/21/26__CM-Batch001__DFK", "p": "DFK", "d": "active", "s": 9.97, "pu": 0, "r": 0.0, "cpa": null, "imp": 189, "cr": "-", "qr": "-", "er": "-", "lc": 1, "ctr": 2.65, "lv": 2, "cv": 2, "atc": 0, "v25": 16, "v50": 6, "v75": 3, "v95": 2, "v100": 2, "tp": 14, "ctp": 0.71, "apt": "4", "hv": true}, {"n": "Ad-006-Video_CM-Batch-001-ugc1.6.mp4-Direct-Symptom-Kitchen-Location-Discovery-DFK", "as": "8/21/26__CM-Batch001__DFK", "p": "DFK", "d": "inactive", "s": 193.56, "pu": 0, "r": 0.0, "cpa": null, "imp": 2603, "cr": "Average", "qr": "Below average - Bottom 35% of ads", "er": "Below average - Bottom 35% of ads", "lc": 42, "ctr": 2.46, "lv": 41, "cv": 45, "atc": 1, "v25": 283, "v50": 143, "v75": 71, "v95": 42, "v100": 38, "tp": 262, "ctp": 0.74, "apt": "6", "hv": true}, {"n": "Ad-005-Video_CM-Batch-001-ugc1.5.mp4-Social-Embarrassment-Ruined-Dinner-Discovery-DFK", "as": "8/21/26__CM-Batch001__DFK", "p": "DFK", "d": "active", "s": 740.01, "pu": 12, "r": 0.7118, "cpa": 61.67, "imp": 10312, "cr": "Average", "qr": "Below average - Bottom 35% of ads", "er": "Below average - Bottom 35% of ads", "lc": 165, "ctr": 2.32, "lv": 146, "cv": 163, "atc": 19, "v25": 917, "v50": 522, "v75": 288, "v95": 186, "v100": 159, "tp": 887, "ctp": 0.83, "apt": "6", "hv": true}, {"n": "Ad-002-Video_CM-Batch-001-ugc1.2.mp4-Misconception-Pattern-Interrupt-Root-Cause-Discovery-DFK", "as": "8/21/26__CM-Batch001__DFK", "p": "DFK", "d": "active", "s": 187.37, "pu": 5, "r": 0.9828, "cpa": 37.47, "imp": 2666, "cr": "-", "qr": "-", "er": "-", "lc": 42, "ctr": 2.36, "lv": 40, "cv": 46, "atc": 5, "v25": 283, "v50": 100, "v75": 66, "v95": 43, "v100": 39, "tp": 267, "ctp": 0.7, "apt": "5", "hv": true}, {"n": "DCM-Hidden-Gunk-Buildup-Reveal-20260827", "as": "8/29/26__Manus-Statics__DCM", "p": "DCM", "d": "active", "s": 2.8, "pu": 0, "r": 0.0, "cpa": null, "imp": 108, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 4.63, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "DCM-No-Harsh-Chemicals-Contrast-20260827", "as": "8/29/26__Manus-Statics__DCM", "p": "DCM", "d": "active", "s": 356.84, "pu": 5, "r": 1.0157, "cpa": 71.37, "imp": 13042, "cr": "-", "qr": "-", "er": "-", "lc": 109, "ctr": 1.57, "lv": 64, "cv": 12, "atc": 12, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "DCM-Foul-Odors-Relief-20260827", "as": "8/29/26__Manus-Statics__DCM", "p": "DCM", "d": "inactive", "s": 371.25, "pu": 4, "r": 0.5058, "cpa": 92.81, "imp": 9263, "cr": "-", "qr": "-", "er": "-", "lc": 128, "ctr": 2.25, "lv": 70, "cv": 5, "atc": 6, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "DCM-Smelly-Disposal-Buildup-20260827", "as": "8/29/26__Manus-Statics__DCM", "p": "DCM", "d": "active", "s": 14.52, "pu": 0, "r": 0.0, "cpa": null, "imp": 353, "cr": "-", "qr": "-", "er": "-", "lc": 3, "ctr": 2.55, "lv": 2, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "DCM-Slow-Drain-Entry-Point-20260827", "as": "8/29/26__Manus-Statics__DCM", "p": "DCM", "d": "inactive", "s": 338.85, "pu": 2, "r": 0.3125, "cpa": 169.43, "imp": 11583, "cr": "-", "qr": "-", "er": "-", "lc": 105, "ctr": 1.61, "lv": 55, "cv": 8, "atc": 7, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "DFK-Source-Cutaway-Hidden-Breeding-20260827", "as": "8/21/26__CM-Batch001__DFK", "p": "DFK", "d": "inactive", "s": 0.0, "pu": 0, "r": 0.0, "cpa": null, "imp": 0, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 0.0, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "DFK-Traps-vs-Source-Failed-Solution-20260827", "as": "8/21/26__CM-Batch001__DFK", "p": "DFK", "d": "inactive", "s": 0.0, "pu": 0, "r": 0.0, "cpa": null, "imp": 0, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 0.0, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "DFK-Hidden-Biofilm-Curiosity-20260827", "as": "8/21/26__CM-Batch001__DFK", "p": "DFK", "d": "inactive", "s": 0.0, "pu": 0, "r": 0.0, "cpa": null, "imp": 0, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 0.0, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "DFK-Gross-Flies-Disgust-20260827", "as": "8/21/26__CM-Batch001__DFK", "p": "DFK", "d": "inactive", "s": 0.0, "pu": 0, "r": 0.0, "cpa": null, "imp": 0, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 0.0, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "DFK-48-Hours-Speed-20260827", "as": "8/21/26__CM-Batch001__DFK", "p": "DFK", "d": "inactive", "s": 0.0, "pu": 0, "r": 0.0, "cpa": null, "imp": 0, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 0.0, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-001-Batch-296.1-DFC", "as": "8/13/26__Batch-296-MaxConversions-AllCustomers", "p": "DFC", "d": "not_delivering", "s": 0.0, "pu": 0, "r": 0.0, "cpa": null, "imp": 0, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 0.0, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-003-Batch-296.3-DFC", "as": "8/13/26__Batch-296-MaxConversions-AllCustomers", "p": "DFC", "d": "not_delivering", "s": 1023.28, "pu": 15, "r": 1.1523, "cpa": 68.22, "imp": 27778, "cr": "Average", "qr": "Average", "er": "Average", "lc": 294, "ctr": 1.92, "lv": 283, "cv": 286, "atc": 28, "v25": 3284, "v50": 1530, "v75": 787, "v95": 486, "v100": 374, "tp": 2904, "ctp": 0.35, "apt": "6", "hv": true}, {"n": "Ad-002-Batch-296.2-DFC", "as": "8/13/26__Batch-296-MaxConversions-AllCustomers", "p": "DFC", "d": "not_delivering", "s": 2.04, "pu": 0, "r": 0.0, "cpa": null, "imp": 66, "cr": "-", "qr": "-", "er": "-", "lc": 1, "ctr": 1.52, "lv": 1, "cv": 1, "atc": 0, "v25": 6, "v50": 2, "v75": 1, "v95": 1, "v100": 1, "tp": 5, "ctp": 0.41, "apt": "4", "hv": true}, {"n": "Ad-002-Batch-296.2-DFC -Bundle-URL", "as": "8/13/26__Batch-296-MaxConversions-AllCustomers", "p": "DFC", "d": "not_delivering", "s": 14.87, "pu": 0, "r": 0.0, "cpa": null, "imp": 338, "cr": "-", "qr": "-", "er": "-", "lc": 3, "ctr": 1.78, "lv": 2, "cv": 3, "atc": 1, "v25": 26, "v50": 13, "v75": 10, "v95": 7, "v100": 6, "tp": 24, "ctp": 0.62, "apt": "5", "hv": true}, {"n": "Ad-003-Batch-296.3-DFC -Bundle-URL", "as": "8/13/26__Batch-296-MaxConversions-AllCustomers", "p": "DFC", "d": "not_delivering", "s": 0.0, "pu": 0, "r": 0.0, "cpa": null, "imp": 0, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 0.0, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-001-Batch-296.1-DFC -Bundle-URL", "as": "8/13/26__Batch-296-MaxConversions-AllCustomers", "p": "DFC", "d": "not_delivering", "s": 28.49, "pu": 0, "r": 0.0, "cpa": null, "imp": 642, "cr": "-", "qr": "-", "er": "-", "lc": 10, "ctr": 2.34, "lv": 10, "cv": 13, "atc": 0, "v25": 57, "v50": 25, "v75": 18, "v95": 13, "v100": 10, "tp": 50, "ctp": 0.57, "apt": "6", "hv": true}, {"n": "Static__#299.2 - DFC Benefits Static", "as": "8/17/26__#299__DFC Benefits Static", "p": "DFC", "d": "inactive", "s": 611.06, "pu": 4, "r": 0.7096, "cpa": 152.76, "imp": 26490, "cr": "Average", "qr": "Average", "er": "Average", "lc": 147, "ctr": 1.33, "lv": 118, "cv": 148, "atc": 17, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Static__#299.1 - DFC Benefits Static", "as": "8/17/26__#299__DFC Benefits Static", "p": "DFC", "d": "active", "s": 956.73, "pu": 5, "r": 0.3418, "cpa": 191.35, "imp": 37380, "cr": "Average", "qr": "Average", "er": "Average", "lc": 229, "ctr": 1.32, "lv": 196, "cv": 227, "atc": 13, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Video__#311.1 - DFC - Text wall Mashup", "as": "8/17/26__#311__DFC - Text wall Mashup", "p": "DFC", "d": "active", "s": 51.3, "pu": 0, "r": 0.0, "cpa": null, "imp": 1218, "cr": "-", "qr": "-", "er": "-", "lc": 6, "ctr": 1.23, "lv": 6, "cv": 7, "atc": 1, "v25": 232, "v50": 98, "v75": 38, "v95": 24, "v100": 22, "tp": 65, "ctp": 0.79, "apt": "4", "hv": true}, {"n": "Video__#311.2 - DFC - Text wall Mashup", "as": "8/17/26__#311__DFC - Text wall Mashup", "p": "DFC", "d": "active", "s": 259.88, "pu": 3, "r": 0.6848, "cpa": 86.63, "imp": 6565, "cr": "Average", "qr": "Average", "er": "Below average - Bottom 35% of ads", "lc": 43, "ctr": 1.33, "lv": 40, "cv": 48, "atc": 3, "v25": 1045, "v50": 598, "v75": 458, "v95": 198, "v100": 190, "tp": 445, "ctp": 0.58, "apt": "4", "hv": true}, {"n": "Video__#311.3 - DFC - Text wall Mashup", "as": "8/17/26__#311__DFC - Text wall Mashup", "p": "DFC", "d": "active", "s": 1302.31, "pu": 17, "r": 0.8256, "cpa": 76.61, "imp": 30055, "cr": "Average", "qr": "Average", "er": "Below average - Bottom 35% of ads", "lc": 250, "ctr": 1.54, "lv": 227, "cv": 252, "atc": 33, "v25": 7535, "v50": 4432, "v75": 2798, "v95": 1871, "v100": 1722, "tp": 2755, "ctp": 0.47, "apt": "5", "hv": true}, {"n": "Ad-001-Batch-279.1-DFC-Static", "as": "08/22/26__#279__DFC Iteration on #91.3 - Video to Static", "p": "DFC", "d": "active", "s": 662.36, "pu": 4, "r": 0.3359, "cpa": 165.59, "imp": 25705, "cr": "Average", "qr": "Average", "er": "Above average", "lc": 241, "ctr": 2.05, "lv": 187, "cv": 215, "atc": 7, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-002-Batch-279.2-DFC-Static", "as": "08/22/26__#279__DFC Iteration on #91.3 - Video to Static", "p": "DFC", "d": "active", "s": 879.24, "pu": 11, "r": 0.8937, "cpa": 79.93, "imp": 32195, "cr": "Average", "qr": "Average", "er": "Average", "lc": 223, "ctr": 1.29, "lv": 190, "cv": 233, "atc": 22, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-003-Batch-279.3-DFC-Static", "as": "08/22/26__#279__DFC Iteration on #91.3 - Video to Static", "p": "DFC", "d": "active", "s": 892.58, "pu": 16, "r": 1.2408, "cpa": 55.79, "imp": 37310, "cr": "Average", "qr": "Average", "er": "Average", "lc": 245, "ctr": 1.12, "lv": 199, "cv": 224, "atc": 22, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-001-Video_CM-Batch-001-ugc1.1.2.mp4-Problem-Solution-Annual-Recurrence-Discovery-DFK", "as": "8/21/26__CM-Batch001__DFK", "p": "DFK", "d": "active", "s": 30.83, "pu": 0, "r": 0.0, "cpa": null, "imp": 690, "cr": "-", "qr": "-", "er": "-", "lc": 4, "ctr": 1.45, "lv": 5, "cv": 7, "atc": 0, "v25": 31, "v50": 12, "v75": 8, "v95": 4, "v100": 3, "tp": 28, "ctp": 1.1, "apt": "3", "hv": true}, {"n": "Ad-001-Static-CM-Batch-302.1-Bold-Headline-Static", "as": "08/29/26__#302__DFC - Bold Headline Static", "p": "DFC", "d": "active", "s": 723.46, "pu": 7, "r": 0.8315, "cpa": 103.35, "imp": 20859, "cr": "Average", "qr": "Average", "er": "Below average - Bottom 35% of ads", "lc": 157, "ctr": 1.28, "lv": 130, "cv": 140, "atc": 17, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-003-Static-CM-Batch-302.3-Bold-Headline-Static", "as": "08/29/26__#302__DFC - Bold Headline Static", "p": "DFC", "d": "active", "s": 0.07, "pu": 0, "r": 0.0, "cpa": null, "imp": 5, "cr": "-", "qr": "-", "er": "-", "lc": 1, "ctr": 20.0, "lv": 2, "cv": 3, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-002-Static-CM-Batch-302.2-Bold-Headline-Static", "as": "08/29/26__#302__DFC - Bold Headline Static", "p": "DFC", "d": "active", "s": 363.63, "pu": 5, "r": 1.0827, "cpa": 72.73, "imp": 13359, "cr": "-", "qr": "-", "er": "-", "lc": 87, "ctr": 1.3, "lv": 73, "cv": 87, "atc": 10, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-001-Static-CM-Batch-275.1-Iteration-on-#196.3-Video-to-Static", "as": "08/29/26__#275__DFC Iteration on #196.3 Video to Static", "p": "DFC", "d": "active", "s": 1.42, "pu": 0, "r": 0.0, "cpa": null, "imp": 32, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 3.12, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-002-Static-CM-Batch-275.2-Iteration-on-#196.3-Video-to-Static", "as": "08/29/26__#275__DFC Iteration on #196.3 Video to Static", "p": "DFC", "d": "active", "s": 0.31, "pu": 0, "r": 0.0, "cpa": null, "imp": 17, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 0.0, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-003-Static-CM-Batch-275.3-Iteration-on-#196.3-Video-to-Static", "as": "08/29/26__#275__DFC Iteration on #196.3 Video to Static", "p": "DFC", "d": "active", "s": 1076.29, "pu": 13, "r": 1.0575, "cpa": 82.79, "imp": 49284, "cr": "Average", "qr": "Above average", "er": "Average", "lc": 376, "ctr": 1.18, "lv": 280, "cv": 336, "atc": 22, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-001-Static-CM-Batch-286.1-Press-Release-Static", "as": "08/29/26__#286__DFC - Press Release Static", "p": "DFC", "d": "active", "s": 0.12, "pu": 0, "r": 0.0, "cpa": null, "imp": 3, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 0.0, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-003-Static-CM-Batch-275.3-Iteration-on-#196.3-Video-to-Static - Copy", "as": "08/29/26__#275__DFC Iteration on #196.3 Video to Static", "p": "DFC", "d": "active", "s": 4.96, "pu": 0, "r": 0.0, "cpa": null, "imp": 200, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 1.0, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-002-Static-CM-Batch-286.2-Press-Release-Static", "as": "08/29/26__#286__DFC - Press Release Static", "p": "DFC", "d": "active", "s": 1003.78, "pu": 10, "r": 0.6653, "cpa": 100.38, "imp": 39459, "cr": "Average", "qr": "Average", "er": "Average", "lc": 284, "ctr": 1.2, "lv": 210, "cv": 253, "atc": 15, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-003-Static-CM-Batch-286.3-Press-Release-Static", "as": "08/29/26__#286__DFC - Press Release Static", "p": "DFC", "d": "active", "s": 57.11, "pu": 0, "r": 0.0, "cpa": null, "imp": 2270, "cr": "Average", "qr": "Average", "er": "Below average - Bottom 35% of ads", "lc": 8, "ctr": 1.32, "lv": 5, "cv": 5, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-002-Batch-281.2-DFC", "as": "8/13/26__Batch-281-MaxConversions-AllCustomers", "p": "DFC", "d": "inactive", "s": 155.86, "pu": 0, "r": 0.0, "cpa": null, "imp": 6345, "cr": "-", "qr": "-", "er": "-", "lc": 236, "ctr": 4.07, "lv": 210, "cv": 247, "atc": 1, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-002-Batch-281.2-DFC-Bundle-URL", "as": "8/13/26__Batch-281-MaxConversions-AllCustomers", "p": "DFC", "d": "inactive", "s": 95.68, "pu": 0, "r": 0.0, "cpa": null, "imp": 4120, "cr": "-", "qr": "-", "er": "-", "lc": 124, "ctr": 3.23, "lv": 105, "cv": 129, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-003-Batch-281.3-DFC-Bundle-URL", "as": "8/13/26__Batch-281-MaxConversions-AllCustomers", "p": "DFC", "d": "inactive", "s": 78.53, "pu": 0, "r": 0.0, "cpa": null, "imp": 2265, "cr": "-", "qr": "-", "er": "-", "lc": 80, "ctr": 3.84, "lv": 72, "cv": 73, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-001-Batch-281.1-DFC-Bundle-URL", "as": "8/13/26__Batch-281-MaxConversions-AllCustomers", "p": "DFC", "d": "inactive", "s": 374.35, "pu": 0, "r": 0.0, "cpa": null, "imp": 12355, "cr": "-", "qr": "-", "er": "-", "lc": 342, "ctr": 2.95, "lv": 311, "cv": 353, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Video__#283.1__DFC - Catching a friend UGC", "as": "8/17/26__#283__DFC - Catching a friend UGC", "p": "DFC", "d": "not_delivering", "s": 652.61, "pu": 12, "r": 1.2449, "cpa": 54.38, "imp": 14623, "cr": "-", "qr": "-", "er": "-", "lc": 158, "ctr": 1.74, "lv": 165, "cv": 168, "atc": 19, "v25": 1812, "v50": 879, "v75": 564, "v95": 388, "v100": 284, "tp": 1619, "ctp": 0.4, "apt": "6", "hv": true}, {"n": "Video__#283.3__DFC - Catching a friend UGC", "as": "8/17/26__#283__DFC - Catching a friend UGC", "p": "DFC", "d": "not_delivering", "s": 36.35, "pu": 0, "r": 0.0, "cpa": null, "imp": 864, "cr": "-", "qr": "-", "er": "-", "lc": 4, "ctr": 1.5, "lv": 4, "cv": 1, "atc": 0, "v25": 91, "v50": 36, "v75": 16, "v95": 14, "v100": 11, "tp": 83, "ctp": 0.44, "apt": "5", "hv": true}, {"n": "Video__#283.2__DFC - Catching a friend UGC", "as": "8/17/26__#283__DFC - Catching a friend UGC", "p": "DFC", "d": "not_delivering", "s": 47.48, "pu": 0, "r": 0.0, "cpa": null, "imp": 1039, "cr": "-", "qr": "-", "er": "-", "lc": 10, "ctr": 1.92, "lv": 8, "cv": 10, "atc": 4, "v25": 122, "v50": 42, "v75": 30, "v95": 17, "v100": 16, "tp": 106, "ctp": 0.45, "apt": "6", "hv": true}, {"n": "Static__#299.3 - DFC Benefits Static", "as": "8/17/26__#299__DFC Benefits Static", "p": "DFC", "d": "active", "s": 41.37, "pu": 0, "r": 0.0, "cpa": null, "imp": 1471, "cr": "-", "qr": "-", "er": "-", "lc": 4, "ctr": 1.09, "lv": 1, "cv": 3, "atc": 1, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Video__#305.3 - DFK - Iteration #107.3", "as": "8/17/26__#305__DFK - Iteration #107.3 Hooks & AI greenscreen", "p": "DFK", "d": "inactive", "s": 346.63, "pu": 2, "r": 0.311, "cpa": 173.31, "imp": 5473, "cr": "-", "qr": "-", "er": "-", "lc": 61, "ctr": 1.77, "lv": 61, "cv": 65, "atc": 2, "v25": 605, "v50": 302, "v75": 192, "v95": 135, "v100": 116, "tp": 400, "ctp": 0.87, "apt": "4", "hv": true}, {"n": "Video__#305.2 - DFK - Iteration #107.3", "as": "8/17/26__#305__DFK - Iteration #107.3 Hooks & AI greenscreen", "p": "DFK", "d": "active", "s": 66.49, "pu": 0, "r": 0.0, "cpa": null, "imp": 1438, "cr": "-", "qr": "-", "er": "-", "lc": 17, "ctr": 2.09, "lv": 13, "cv": 18, "atc": 2, "v25": 106, "v50": 43, "v75": 25, "v95": 16, "v100": 11, "tp": 63, "ctp": 1.06, "apt": "4", "hv": true}, {"n": "Video__#305.1 - DFK - Iteration #107.3", "as": "8/17/26__#305__DFK - Iteration #107.3 Hooks & AI greenscreen", "p": "DFK", "d": "active", "s": 1214.3, "pu": 24, "r": 0.9191, "cpa": 50.6, "imp": 22997, "cr": "-", "qr": "-", "er": "-", "lc": 255, "ctr": 1.61, "lv": 227, "cv": 268, "atc": 39, "v25": 2523, "v50": 1446, "v75": 967, "v95": 656, "v100": 561, "tp": 1856, "ctp": 0.65, "apt": "4", "hv": true}, {"n": "Ad-001-Video_CM-Batch-001-ugc2.6.mp4-Social-Embarrassment-Personal-Story-Discovery-DFC", "as": "8/27/26__CM-Batch001__DFC", "p": "DFC", "d": "active", "s": 350.31, "pu": 4, "r": 1.2277, "cpa": 87.58, "imp": 6418, "cr": "-", "qr": "-", "er": "-", "lc": 74, "ctr": 2.1, "lv": 65, "cv": 67, "atc": 6, "v25": 365, "v50": 190, "v75": 124, "v95": 88, "v100": 83, "tp": 581, "ctp": 0.6, "apt": "6", "hv": true}, {"n": "Ad-004-Video_CM-Batch-001-ugc2.31.mp4-Price-Anchoring-High-Contrast-Cost-Comparison-DFC", "as": "8/27/26__CM-Batch001__DFC", "p": "DFC", "d": "active", "s": 15.1, "pu": 0, "r": 0.0, "cpa": null, "imp": 351, "cr": "-", "qr": "-", "er": "-", "lc": 2, "ctr": 1.99, "lv": 0, "cv": 2, "atc": 0, "v25": 26, "v50": 12, "v75": 11, "v95": 8, "v100": 7, "tp": 38, "ctp": 0.4, "apt": "7", "hv": true}, {"n": "Ad-003-Video_CM-Batch-001-ugc2.21.mp4-High-Intent-Symptom-Diagnosis-Consequence-Escalation-DFC", "as": "8/27/26__CM-Batch001__DFC", "p": "DFC", "d": "active", "s": 215.94, "pu": 3, "r": 0.854, "cpa": 71.98, "imp": 3531, "cr": "-", "qr": "-", "er": "-", "lc": 53, "ctr": 2.46, "lv": 46, "cv": 55, "atc": 4, "v25": 266, "v50": 126, "v75": 77, "v95": 53, "v100": 51, "tp": 357, "ctp": 0.6, "apt": "6", "hv": true}, {"n": "Ad-002-Video_CM-Batch-001-ugc2.11.mp4-Curiosity-Personified-Early-Warning-DFC", "as": "8/27/26__CM-Batch001__DFC", "p": "DFC", "d": "active", "s": 103.82, "pu": 2, "r": 1.2333, "cpa": 51.91, "imp": 2103, "cr": "-", "qr": "-", "er": "-", "lc": 34, "ctr": 2.81, "lv": 33, "cv": 42, "atc": 3, "v25": 141, "v50": 70, "v75": 47, "v95": 37, "v100": 34, "tp": 223, "ctp": 0.47, "apt": "7", "hv": true}, {"n": "Ad-006-Video_CM-Batch-001-ugc2.51.mp4-Category-Re-Education-Myth-Busting-DFC", "as": "8/27/26__CM-Batch001__DFC", "p": "DFC", "d": "active", "s": 9.94, "pu": 0, "r": 0.0, "cpa": null, "imp": 157, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 1.27, "lv": 0, "cv": 0, "atc": 0, "v25": 7, "v50": 7, "v75": 4, "v95": 1, "v100": 1, "tp": 10, "ctp": 0.99, "apt": "7", "hv": true}, {"n": "Ad-005-Video_CM-Batch-001-ugc2.41.mp4-Frustration-With-Status-Quo-Sunk-Cost-Pain-Point-DFC", "as": "8/27/26__CM-Batch001__DFC", "p": "DFC", "d": "active", "s": 507.45, "pu": 3, "r": 0.3743, "cpa": 169.15, "imp": 7918, "cr": "-", "qr": "-", "er": "-", "lc": 111, "ctr": 2.58, "lv": 100, "cv": 97, "atc": 7, "v25": 653, "v50": 337, "v75": 201, "v95": 122, "v100": 113, "tp": 884, "ctp": 0.57, "apt": "8", "hv": true}, {"n": "Ad-001-Static-CM-Batch-298.1-Value-pack-Static", "as": "08/29/26__#298__DFC Value pack Static", "p": "DFC", "d": "active", "s": 66.89, "pu": 0, "r": 0.0, "cpa": null, "imp": 1996, "cr": "-", "qr": "-", "er": "-", "lc": 22, "ctr": 2.1, "lv": 16, "cv": 16, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-002-Static-CM-Batch-298.2-Value-pack-Static", "as": "08/29/26__#298__DFC Value pack Static", "p": "DFC", "d": "active", "s": 3.49, "pu": 0, "r": 0.0, "cpa": null, "imp": 114, "cr": "-", "qr": "-", "er": "-", "lc": 2, "ctr": 4.39, "lv": 2, "cv": 1, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-003-Static-CM-Batch-298.3-Value-pack-Static", "as": "08/29/26__#298__DFC Value pack Static", "p": "DFC", "d": "active", "s": 960.53, "pu": 11, "r": 1.001, "cpa": 87.32, "imp": 35805, "cr": "-", "qr": "-", "er": "-", "lc": 257, "ctr": 1.28, "lv": 196, "cv": 229, "atc": 20, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "DFC-Protect-Yard-15K-Fear-20260827", "as": "8/27/26__CM-Batch001__DFC", "p": "DFC", "d": "inactive", "s": 0.0, "pu": 0, "r": 0.0, "cpa": null, "imp": 0, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 0.0, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "DFC-Tablet-40X-Mechanism-20260827", "as": "8/27/26__CM-Batch001__DFC", "p": "DFC", "d": "inactive", "s": 0.0, "pu": 0, "r": 0.0, "cpa": null, "imp": 0, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 0.0, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "DFC-500-Pumpout-Expense-20260827", "as": "8/27/26__CM-Batch001__DFC", "p": "DFC", "d": "inactive", "s": 0.0, "pu": 0, "r": 0.0, "cpa": null, "imp": 0, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 0.0, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "DFC-Slow-Drains-Odors-Symptom-20260827", "as": "8/27/26__CM-Batch001__DFC", "p": "DFC", "d": "inactive", "s": 0.0, "pu": 0, "r": 0.0, "cpa": null, "imp": 0, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 0.0, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "DFC-Skeptical-Risk-Free-20260827", "as": "8/27/26__CM-Batch001__DFC", "p": "DFC", "d": "inactive", "s": 0.0, "pu": 0, "r": 0.0, "cpa": null, "imp": 0, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 0.0, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-003-Batch-281.3-DFC", "as": "8/13/26__Batch-281-MaxConversions-AllCustomers", "p": "DFC", "d": "inactive", "s": 470.92, "pu": 0, "r": 0.0, "cpa": null, "imp": 17686, "cr": "-", "qr": "-", "er": "-", "lc": 526, "ctr": 3.19, "lv": 479, "cv": 523, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-001-Batch-281.1-DFC", "as": "8/13/26__Batch-281-MaxConversions-AllCustomers", "p": "DFC", "d": "inactive", "s": 195.06, "pu": 0, "r": 0.0, "cpa": null, "imp": 5404, "cr": "-", "qr": "-", "er": "-", "lc": 173, "ctr": 3.35, "lv": 154, "cv": 158, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Video__#317 - DFC - Founder - Septic pros", "as": "8/17/26__#314&#317__DFC - Founder - Failed solutions & Septic pros", "p": "DFC", "d": "inactive", "s": 392.7, "pu": 0, "r": 0.0, "cpa": null, "imp": 10891, "cr": "Below average - Bottom 35% of ads", "qr": "Average", "er": "Average", "lc": 117, "ctr": 1.69, "lv": 128, "cv": 119, "atc": 6, "v25": 1068, "v50": 626, "v75": 340, "v95": 209, "v100": 176, "tp": 875, "ctp": 0.45, "apt": "5", "hv": true}, {"n": "Video__#314 - DFC - Founder - Failed solutions", "as": "8/17/26__#314&#317__DFC - Founder - Failed solutions & Septic pros", "p": "DFC", "d": "active", "s": 1208.04, "pu": 15, "r": 0.8822, "cpa": 80.54, "imp": 38965, "cr": "Average", "qr": "Average", "er": "Average", "lc": 335, "ctr": 1.5, "lv": 311, "cv": 343, "atc": 21, "v25": 3612, "v50": 1583, "v75": 1110, "v95": 807, "v100": 631, "tp": 5055, "ctp": 0.24, "apt": "9", "hv": true}, {"n": "Static__#252.3 - DFC Not Bacteria Mechanism", "as": "8/17/26__#252__DFC Not Bacteria Mechanism Static", "p": "DFC", "d": "inactive", "s": 214.81, "pu": 3, "r": 1.0715, "cpa": 71.6, "imp": 10838, "cr": "Average", "qr": "Average", "er": "Average", "lc": 48, "ctr": 1.08, "lv": 45, "cv": 48, "atc": 6, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Static__#252.2 - DFC Not Bacteria Mechanism", "as": "8/17/26__#252__DFC Not Bacteria Mechanism Static", "p": "DFC", "d": "active", "s": 492.11, "pu": 5, "r": 0.8674, "cpa": 98.42, "imp": 15876, "cr": "Above average", "qr": "Average", "er": "Above average", "lc": 109, "ctr": 1.19, "lv": 84, "cv": 89, "atc": 5, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Static__#252.1 - DFC Not Bacteria Mechanism", "as": "8/17/26__#252__DFC Not Bacteria Mechanism Static", "p": "DFC", "d": "active", "s": 885.72, "pu": 8, "r": 0.7598, "cpa": 110.72, "imp": 31839, "cr": "Average", "qr": "Above average", "er": "Average", "lc": 181, "ctr": 1.29, "lv": 145, "cv": 175, "atc": 13, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-003-Batch-291.3-DFC-Static", "as": "08/22/26__#291__DFC Meme Static", "p": "DFC", "d": "not_delivering", "s": 365.46, "pu": 5, "r": 0.9287, "cpa": 73.09, "imp": 22031, "cr": "Average", "qr": "Average", "er": "Average", "lc": 121, "ctr": 1.34, "lv": 99, "cv": 116, "atc": 9, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-002-Batch-291.2-DFC-Static", "as": "08/22/26__#291__DFC Meme Static", "p": "DFC", "d": "not_delivering", "s": 419.7, "pu": 7, "r": 1.1971, "cpa": 59.96, "imp": 22301, "cr": "Average", "qr": "Average", "er": "Above average", "lc": 186, "ctr": 2.35, "lv": 143, "cv": 171, "atc": 7, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-001-Batch-291.1-DFC-Static", "as": "08/22/26__#291__DFC Meme Static", "p": "DFC", "d": "not_delivering", "s": 4.41, "pu": 0, "r": 0.0, "cpa": null, "imp": 248, "cr": "-", "qr": "-", "er": "-", "lc": 1, "ctr": 1.21, "lv": 1, "cv": 1, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-001-Static-CM-Batch-287.1-Search-Solution Static", "as": "08/29/26__#287__DFC - Search-Solution Static", "p": "DFC", "d": "not_delivering", "s": 2.15, "pu": 0, "r": 0.0, "cpa": null, "imp": 60, "cr": "-", "qr": "-", "er": "-", "lc": 1, "ctr": 1.67, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-003-Static-CM-Batch-287.3-Search-Solution Static", "as": "08/29/26__#287__DFC - Search-Solution Static", "p": "DFC", "d": "not_delivering", "s": 0.0, "pu": 0, "r": 0.0, "cpa": null, "imp": 0, "cr": "-", "qr": "-", "er": "-", "lc": 0, "ctr": 0.0, "lv": 0, "cv": 0, "atc": 0, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}, {"n": "Ad-002-Static-CM-Batch-287.2-Search-Solution Static", "as": "08/29/26__#287__DFC - Search-Solution Static", "p": "DFC", "d": "inactive", "s": 451.47, "pu": 1, "r": 0.1428, "cpa": 451.47, "imp": 12863, "cr": "Average", "qr": "Average", "er": "Below average - Bottom 35% of ads", "lc": 90, "ctr": 0.99, "lv": 65, "cv": 67, "atc": 3, "v25": null, "v50": null, "v75": null, "v95": null, "v100": null, "tp": null, "ctp": null, "apt": "00:00:00", "hv": false}]};
+const ADSETS = DATA.adsets;
+const ADS = DATA.ads;
+
+// Build lookup: adset name -> ads
+const adsByAdset = {};
+ADS.forEach(ad => {
+  if (!adsByAdset[ad.as]) adsByAdset[ad.as] = [];
+  adsByAdset[ad.as].push(ad);
+});
+
+// Sort ads within each adset by spend desc
+Object.values(adsByAdset).forEach(arr => arr.sort((a, b) => b.s - a.s));
+
+let currentFilter = 'all';
+let currentStatus = 'all';
+let currentSort = 'spend-desc';
+let expandedSets = new Set();
+
+function fmt(n) {
+  if (n == null) return '—';
+  return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+function fmtInt(n) {
+  if (n == null) return '—';
+  return n.toLocaleString('en-US');
+}
+function fmtPct(n) {
+  if (n == null) return '—';
+  return n.toFixed(2) + '%';
+}
+
+function roasClass(r, product) {
+  if (!r || r === 0) return 'na';
+  // DFC target: $60 CPA / 0.8-1.0 ROAS; DFK target: $40 CPA
+  if (r >= 1.0) return 'good';
+  if (r >= 0.6) return 'warn';
+  return 'bad';
+}
+
+function cpaClass(cpa, product) {
+  if (cpa == null) return 'na';
+  const target = product === 'DFK' ? 40 : 60;
+  if (cpa <= target) return 'good';
+  if (cpa <= target * 1.5) return 'warn';
+  return 'bad';
+}
+
+function deliveryLabel(d) {
+  const map = { active: 'Active', inactive: 'Off', archived: 'Archived', not_delivering: 'Paused' };
+  return map[d] || d;
+}
+
+function getFiltered() {
+  let list = ADSETS;
+  if (currentFilter !== 'all') list = list.filter(a => a.product === currentFilter);
+  if (currentStatus === 'with-spend') list = list.filter(a => a.spend > 0);
+  if (currentStatus === 'active') list = list.filter(a => a.delivery === 'active');
+  return sortList(list);
+}
+
+function sortList(list) {
+  const [field, dir] = currentSort.split('-');
+  const mult = dir === 'asc' ? 1 : -1;
+  return [...list].sort((a, b) => {
+    let va, vb;
+    if (field === 'name') { va = a.name.toLowerCase(); vb = b.name.toLowerCase(); return va < vb ? -mult : va > vb ? mult : 0; }
+    if (field === 'spend') { va = a.spend; vb = b.spend; }
+    if (field === 'roas') { va = a.roas || 0; vb = b.roas || 0; }
+    if (field === 'cpa') { va = a.cpa || 99999; vb = b.cpa || 99999; }
+    if (field === 'purchases') { va = a.purchases; vb = b.purchases; }
+    return (va - vb) * mult;
+  });
+}
+
+function updateSummary() {
+  const filtered = getFiltered();
+  const totalSpend = filtered.reduce((s, a) => s + a.spend, 0);
+  const totalPurchases = filtered.reduce((s, a) => s + a.purchases, 0);
+  const withSpend = filtered.filter(a => a.spend > 0);
+  const avgRoas = totalSpend > 0 ? filtered.reduce((s, a) => s + (a.roas * a.spend), 0) / totalSpend : 0;
+  const avgCpa = totalPurchases > 0 ? totalSpend / totalPurchases : 0;
+
+  document.getElementById('summary').innerHTML = `
+    <div class="tile">
+      <div class="tile-label">Ad Sets</div>
+      <div class="tile-value">${filtered.length}</div>
+      <div class="tile-sub">${withSpend.length} with spend</div>
+    </div>
+    <div class="tile">
+      <div class="tile-label">Total Spend</div>
+      <div class="tile-value">$${fmtInt(Math.round(totalSpend))}</div>
+    </div>
+    <div class="tile">
+      <div class="tile-label">Total Purchases</div>
+      <div class="tile-value">${fmtInt(totalPurchases)}</div>
+    </div>
+    <div class="tile">
+      <div class="tile-label">Blended ROAS</div>
+      <div class="tile-value ${roasClass(avgRoas)}">${avgRoas.toFixed(2)}×</div>
+    </div>
+    <div class="tile">
+      <div class="tile-label">Blended CPA</div>
+      <div class="tile-value ${cpaClass(avgCpa, currentFilter)}">${avgCpa > 0 ? '$' + fmt(avgCpa) : '—'}</div>
+    </div>
+  `;
+}
+
+function renderList() {
+  const filtered = getFiltered();
+  const container = document.getElementById('adsetList');
+
+  if (filtered.length === 0) {
+    container.innerHTML = '<div class="empty-state">No ad sets match the current filters.</div>';
+    return;
+  }
+
+  container.innerHTML = filtered.map((a, i) => {
+    const isExpanded = expandedSets.has(a.name);
+    const ads = adsByAdset[a.name] || [];
+    const hasAds = ads.length > 0;
+    const noPurchases = a.purchases === 0 && a.spend > 0;
+
+    // Short name: strip date prefix pattern
+    let shortName = a.name.replace(/^\d{1,2}\/\d{1,2}\/\d{2}__/, '').replace(/^0?\d\/\d{1,2}\/\d{2}__/, '');
+
+    return `
+      <div class="adset-row ${isExpanded ? 'expanded' : ''} ${a.spend === 0 ? 'no-purchases' : ''}" data-name="${a.name}">
+        <div class="adset-header" tabindex="0" role="button" aria-expanded="${isExpanded}" onclick="toggleAdset('${a.name.replace(/'/g, "\\'")}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleAdset('${a.name.replace(/'/g, "\\'")}');}">
+          <div class="expand-icon">${hasAds ? '▶' : ''}</div>
+          <div class="adset-name" title="${a.name}">
+            <span class="product-tag ${a.product.toLowerCase()}">${a.product}</span>
+            ${shortName}
+          </div>
+          <div class="metric">${a.spend > 0 ? '$' + fmt(a.spend) : '—'}</div>
+          <div class="metric ${a.purchases > 0 ? '' : (a.spend > 0 ? 'na' : 'secondary')}">${a.purchases > 0 ? fmtInt(a.purchases) : (a.spend > 0 ? '0' : '—')}</div>
+          <div class="metric ${roasClass(a.roas, a.product)}">${a.roas > 0 ? a.roas.toFixed(2) + '×' : '—'}</div>
+          <div class="metric hide-mobile ${cpaClass(a.cpa, a.product)}">${a.cpa ? '$' + fmt(a.cpa) : '—'}</div>
+          <div class="metric secondary hide-mobile">${a.cpm > 0 ? '$' + fmt(a.cpm) : '—'}</div>
+          <div class="delivery-tag">
+            <span class="status-dot ${a.delivery}"></span>
+            ${deliveryLabel(a.delivery)}
+          </div>
+        </div>
+        ${isExpanded && hasAds ? renderAdDetail(ads, a) : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+function renderAdDetail(ads, adset) {
+  const hasVideo = ads.some(a => a.hv);
+
+  return `
+    <div class="adset-detail">
+      <div class="section-tabs">
+        <button class="section-tab active" onclick="switchTab(this, 'perf', '${adset.name.replace(/'/g, "\\'")}')">Performance</button>
+        <button class="section-tab" onclick="switchTab(this, 'funnel', '${adset.name.replace(/'/g, "\\'")}')">Funnel</button>
+        ${hasVideo ? `<button class="section-tab" onclick="switchTab(this, 'video', '${adset.name.replace(/'/g, "\\'")}')">Video</button>` : ''}
+        <button class="section-tab" onclick="switchTab(this, 'quality', '${adset.name.replace(/'/g, "\\'")}')">Quality</button>
+      </div>
+      <div class="ad-table-wrap">
+        ${renderPerfTable(ads, adset)}
+      </div>
+    </div>
+  `;
+}
+
+function renderPerfTable(ads, adset) {
+  return `<table class="ad-table" data-view="perf">
+    <thead><tr>
+      <th style="min-width:200px">Ad</th>
+      <th>Status</th>
+      <th>Spend</th>
+      <th>Purchases</th>
+      <th>ROAS</th>
+      <th>CPA</th>
+      <th>Impressions</th>
+      <th>Recommendation</th>
+    </tr></thead>
+    <tbody>${ads.map(a => {
+      const rec = getRecommendation(a, adset);
+      return `<tr>
+        <td title="${a.n}">${shortAdName(a.n)}</td>
+        <td><div class="ad-delivery"><span class="status-dot ${a.d}"></span>${deliveryLabel(a.d)}</div></td>
+        <td>${a.s > 0 ? '$' + fmt(a.s) : '—'}</td>
+        <td>${a.pu > 0 ? fmtInt(a.pu) : (a.s > 0 ? '0' : '—')}</td>
+        <td class="${roasClass(a.r, adset.product)}">${a.r > 0 ? a.r.toFixed(2) + '×' : '—'}</td>
+        <td class="${cpaClass(a.cpa, adset.product)}">${a.cpa ? '$' + fmt(a.cpa) : '—'}</td>
+        <td>${a.imp > 0 ? fmtInt(a.imp) : '—'}</td>
+        <td><span class="rank-badge ${rec.cls}">${rec.label}</span></td>
+      </tr>`;
+    }).join('')}</tbody>
+  </table>`;
+}
+
+function renderFunnelTable(ads) {
+  return `<table class="ad-table" data-view="funnel">
+    <thead><tr>
+      <th style="min-width:200px">Ad</th>
+      <th>Link Clicks</th>
+      <th>CTR</th>
+      <th>Landing Views</th>
+      <th>Content Views</th>
+      <th>Add to Cart</th>
+      <th>Purchases</th>
+      <th>Click→Purchase</th>
+    </tr></thead>
+    <tbody>${ads.map(a => {
+      const convRate = a.lc > 0 && a.pu > 0 ? ((a.pu / a.lc) * 100).toFixed(1) + '%' : '—';
+      return `<tr>
+        <td title="${a.n}">${shortAdName(a.n)}</td>
+        <td>${a.lc > 0 ? fmtInt(a.lc) : '—'}</td>
+        <td>${a.ctr > 0 ? a.ctr.toFixed(2) + '%' : '—'}</td>
+        <td>${a.lv > 0 ? fmtInt(a.lv) : '—'}</td>
+        <td>${a.cv > 0 ? fmtInt(a.cv) : '—'}</td>
+        <td>${a.atc > 0 ? fmtInt(a.atc) : '—'}</td>
+        <td>${a.pu > 0 ? fmtInt(a.pu) : '—'}</td>
+        <td>${convRate}</td>
+      </tr>`;
+    }).join('')}</tbody>
+  </table>`;
+}
+
+function renderVideoTable(ads) {
+  const videoAds = ads.filter(a => a.hv);
+  if (videoAds.length === 0) return '<div class="empty-state">No video ads in this ad set.</div>';
+
+  return `<table class="ad-table" data-view="video">
+    <thead><tr>
+      <th style="min-width:200px">Ad</th>
+      <th>ThruPlays</th>
+      <th>$/ThruPlay</th>
+      <th>Avg Play</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>95%</th>
+      <th>100%</th>
+      <th>Retention</th>
+    </tr></thead>
+    <tbody>${videoAds.map(a => {
+      const retention = a.v25 > 0 ? ((a.v100 / a.v25) * 100).toFixed(0) : 0;
+      return `<tr>
+        <td title="${a.n}">${shortAdName(a.n)}</td>
+        <td>${a.tp ? fmtInt(a.tp) : '—'}</td>
+        <td>${a.ctp ? '$' + fmt(a.ctp) : '—'}</td>
+        <td>${a.apt && a.apt !== '00:00:00' ? a.apt.replace(/^0+:?/, '') : '—'}</td>
+        <td>${a.v25 ? fmtInt(a.v25) : '—'}</td>
+        <td>${a.v50 ? fmtInt(a.v50) : '—'}</td>
+        <td>${a.v75 ? fmtInt(a.v75) : '—'}</td>
+        <td>${a.v95 ? fmtInt(a.v95) : '—'}</td>
+        <td>${a.v100 ? fmtInt(a.v100) : '—'}</td>
+        <td>${retention > 0 ? retention + '%' : '—'}</td>
+      </tr>`;
+    }).join('')}</tbody>
+  </table>`;
+}
+
+function renderQualityTable(ads) {
+  return `<table class="ad-table" data-view="quality">
+    <thead><tr>
+      <th style="min-width:200px">Ad</th>
+      <th>Conversion Rank</th>
+      <th>Quality Rank</th>
+      <th>Engagement Rank</th>
+    </tr></thead>
+    <tbody>${ads.filter(a => a.s > 0).map(a => `<tr>
+        <td title="${a.n}">${shortAdName(a.n)}</td>
+        <td>${rankBadge(a.cr)}</td>
+        <td>${rankBadge(a.qr)}</td>
+        <td>${rankBadge(a.er)}</td>
+      </tr>`).join('')}</tbody>
+  </table>`;
+}
+
+function rankBadge(rank) {
+  if (!rank || rank === '-') return '<span class="rank-badge na">—</span>';
+  if (rank.includes('Above')) return '<span class="rank-badge above">Above avg</span>';
+  if (rank.includes('Below')) return '<span class="rank-badge below">Below avg</span>';
+  return '<span class="rank-badge average">Average</span>';
+}
+
+function getRecommendation(ad, adset) {
+  if (ad.s === 0) return { label: 'No spend', cls: 'na' };
+  if (ad.pu === 0 && ad.s >= 100) return { label: 'Cut', cls: 'below' };
+  if (ad.pu === 0) return { label: 'Watching', cls: 'na' };
+  // For DFC: target CPA $60, for DFK: $40
+  const target = adset.product === 'DFK' ? 40 : 60;
+  if (ad.cpa && ad.cpa <= target && ad.r >= 0.8) return { label: 'Lead ad', cls: 'above' };
+  if (ad.cpa && ad.cpa <= target * 1.2) return { label: 'Keep', cls: 'above' };
+  if (ad.r >= 0.6) return { label: 'Watch', cls: 'average' };
+  if (ad.cpa && ad.cpa > target * 2.5) return { label: 'Cut', cls: 'below' };
+  return { label: 'Watch', cls: 'average' };
+}
+
+function shortAdName(name) {
+  // Trim long prefixes for readability
+  let short = name
+    .replace(/^Ad-\d+-/, '')
+    .replace(/^Static__/, '⬜ ')
+    .replace(/^Video__/, '▶ ')
+    .replace(/-20260827$/, '')
+    .replace(/^(DFC|DFK|DCM)-/, '$1 ');
+  if (short.length > 55) short = short.substring(0, 52) + '…';
+  return short;
+}
+
+function toggleAdset(name) {
+  if (expandedSets.has(name)) expandedSets.delete(name);
+  else expandedSets.add(name);
+  renderList();
+}
+
+function switchTab(btn, view, adsetName) {
+  const detail = btn.closest('.adset-detail');
+  detail.querySelectorAll('.section-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+
+  const ads = adsByAdset[adsetName] || [];
+  const adset = ADSETS.find(a => a.name === adsetName);
+  const wrap = detail.querySelector('.ad-table-wrap');
+
+  if (view === 'perf') wrap.innerHTML = renderPerfTable(ads, adset);
+  else if (view === 'funnel') wrap.innerHTML = renderFunnelTable(ads);
+  else if (view === 'video') wrap.innerHTML = renderVideoTable(ads);
+  else if (view === 'quality') wrap.innerHTML = renderQualityTable(ads);
+}
+
+function setFilter(f) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-bar [data-filter]').forEach(b => b.classList.toggle('active', b.dataset.filter === f));
+  updateSummary();
+  renderList();
+}
+
+function setStatus(s) {
+  currentStatus = s;
+  document.querySelectorAll('.status-filter [data-status]').forEach(b => b.classList.toggle('active', b.dataset.status === s));
+  updateSummary();
+  renderList();
+}
+
+function changeSort(v) {
+  currentSort = v;
+  renderList();
+}
+
+// Init
+updateSummary();
+renderList();
+</script>
+
+</body></html>
