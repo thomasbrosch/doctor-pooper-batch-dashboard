@@ -487,14 +487,67 @@ header .date-range {
   transform: translate(-50%, -50%);
   background: rgba(0,0,0,0.55);
   color: #fff;
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 8px;
+  font-size: 10px;
   pointer-events: none;
+}
+.ad-thumb-wrap { cursor: pointer; }
+/* Lightbox overlay */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+.lightbox-overlay.active { display: flex; }
+.lightbox-overlay img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+}
+.lightbox-caption {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 14px;
+  background: rgba(0,0,0,0.6);
+  padding: 6px 16px;
+  border-radius: 6px;
+  max-width: 80vw;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lightbox-close {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  color: #fff;
+  font-size: 32px;
+  cursor: pointer;
+  background: rgba(0,0,0,0.5);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
 }
 .ad-name-cell {
   display: flex;
@@ -517,17 +570,22 @@ header .date-range {
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  padding: 8px;
+  padding: 10px;
   background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: 8px;
-  max-width: 180px;
+  max-width: 260px;
 }
 .creative-card img {
-  width: 160px;
-  height: 160px;
+  width: 240px;
+  height: 240px;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.creative-card img:hover {
+  transform: scale(1.03);
 }
 .creative-card .creative-label {
   font-size: 11px;
@@ -876,9 +934,10 @@ function renderCreativeGrid(ads) {
     const isVideo = a.n.startsWith('Video__') || a.n.includes('Video') || a.n.includes('Mashup') || a.n.includes('UGC') || a.n.includes('.mp4');
     const shortName = shortAdName(a.n);
     const rec = getRecommendation(a, ADSETS.find(as => as.name === a.as));
+    const thumbSrc = THUMBS[key];
     return '<div class="creative-card">' +
-      '<div style="position:relative">' +
-        '<img src="' + THUMBS[key] + '" alt="' + shortName.replace(/"/g, '') + '">' +
+      '<div style="position:relative;cursor:pointer" onclick="openLightbox(\'' + thumbSrc.replace(/'/g, "\\'") + '\', \'' + shortName.replace(/'/g, "\\'") + '\')">' +
+        '<img src="' + thumbSrc + '" alt="' + shortName.replace(/"/g, '') + '">' +
         (isVideo ? '<span class="ad-thumb-play" style="width:28px;height:28px;font-size:14px">▶</span>' : '') +
       '</div>' +
       '<div class="creative-label">' + shortName + '</div>' +
@@ -931,10 +990,11 @@ function getThumbKey(name) {
 function getThumbImg(name, size) {
   const key = getThumbKey(name);
   if (!key || !THUMBS[key]) return '';
-  const sz = size || 40;
+  const sz = size || 64;
   const isVideo = name.startsWith('Video__') || name.includes('Video') || name.includes('Mashup') || name.includes('UGC') || name.includes('.mp4');
-  return '<div class="ad-thumb-wrap" style="width:'+sz+'px;height:'+sz+'px">' +
-    '<img class="ad-thumb" src="' + THUMBS[key] + '" alt="" style="width:'+sz+'px;height:'+sz+'px">' +
+  const thumbSrc = THUMBS[key];
+  return '<div class="ad-thumb-wrap" style="width:'+sz+'px;height:'+sz+'px" onclick="openLightbox(\'' + thumbSrc.replace(/'/g, "\\'") + '\', \'' + name.replace(/'/g, "\\'") + '\')">' +
+    '<img class="ad-thumb" src="' + thumbSrc + '" alt="" style="width:'+sz+'px;height:'+sz+'px">' +
     (isVideo ? '<span class="ad-thumb-play">▶</span>' : '') +
     '</div>';
 }
@@ -992,9 +1052,35 @@ function changeSort(v) {
   renderList();
 }
 
+// Lightbox
+function openLightbox(src, caption) {
+  var overlay = document.getElementById('lightbox');
+  var img = document.getElementById('lightbox-img');
+  var cap = document.getElementById('lightbox-cap');
+  img.src = src;
+  cap.textContent = caption || '';
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  var overlay = document.getElementById('lightbox');
+  overlay.classList.remove('active');
+  document.getElementById('lightbox-img').src = '';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+
 // Init
 updateSummary();
 renderList();
 </script>
+
+<div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <img id="lightbox-img" src="" alt="Creative preview" onclick="event.stopPropagation()">
+  <div id="lightbox-cap" class="lightbox-caption"></div>
+</div>
 
 </body></html>
