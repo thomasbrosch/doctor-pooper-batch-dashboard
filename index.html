@@ -469,6 +469,49 @@ header .date-range {
 
 .no-purchases { opacity: 0.5; }
 
+/* Top performer notation */
+.top-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.625rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: linear-gradient(135deg, #fff7e6 0%, #fff1cc 100%);
+  color: #a67c00;
+  border: 1px solid #e6c84a;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  vertical-align: 1px;
+  margin-left: 6px;
+}
+.top-badge::before {
+  content: '★';
+  font-size: 0.6875rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .top-badge {
+    background: linear-gradient(135deg, #2a2518 0%, #332c1a 100%);
+    color: #e6c84a;
+    border-color: #a67c00;
+  }
+}
+:root[data-theme="dark"] .top-badge {
+  background: linear-gradient(135deg, #2a2518 0%, #332c1a 100%);
+  color: #e6c84a;
+  border-color: #a67c00;
+}
+.ad-table .top-badge {
+  font-size: 0.5625rem;
+  padding: 1px 5px;
+  margin-left: 4px;
+}
+.ad-table .top-badge::before {
+  font-size: 0.625rem;
+}
+
+
 .ad-thumb-wrap {
   position: relative;
   flex-shrink: 0;
@@ -655,6 +698,32 @@ const ADS = DATA.ads;
 
 // Build lookup: adset name -> ads
 const adsByAdset = {};
+
+// Top-performing ad sets and ads (ROAS >= 1.0x, spend > $10)
+const TOP_ADSET_PATTERNS = ["#278__", "Batch-296-", "#283__", "#291__", "#275__"];
+const TOP_AD_NAMES = new Set([
+  "DFC-500-Pumpout-Expense-20260827",
+  "Ad-002-Batch-278.2-DFC-Video",
+  "Video__#283.1__DFC - Catching a friend UGC",
+  "Ad-003-Batch-279.3-DFC-Static",
+  "Ad-002-Video_CM-Batch-001-ugc2.11.mp4-Curiosity-Personified-Early-Warning-DFC",
+  "Ad-001-Video_CM-Batch-001-ugc2.6.mp4-Social-Embarrassment-Personal-Story-Discovery-DFC",
+  "Ad-002-Batch-291.2-DFC-Static",
+  "DFC-Protect-Yard-15K-Fear-20260827",
+  "Ad-003-Batch-296.3-DFC",
+  "Ad-002-Static-CM-Batch-302.2-Bold-Headline-Static",
+  "Static__#252.3 - DFC Not Bacteria Mechanism",
+  "Ad-003-Static-CM-Batch-275.3-Iteration-on-#196.3-Video-to-Static",
+  "DCM-No-Harsh-Chemicals-Contrast-20260827",
+  "Ad-003-Static-CM-Batch-298.3-Value-pack-Static"
+]);
+function isTopAdset(name) {
+  return TOP_ADSET_PATTERNS.some(p => name.includes(p));
+}
+function isTopAd(name) {
+  return TOP_AD_NAMES.has(name);
+}
+
 ADS.forEach(ad => {
   if (!adsByAdset[ad.as]) adsByAdset[ad.as] = [];
   adsByAdset[ad.as].push(ad);
@@ -781,7 +850,7 @@ function renderList() {
           <div class="expand-icon">${hasAds ? '▶' : ''}</div>
           <div class="adset-name" title="${a.name}">
             <span class="product-tag ${a.product.toLowerCase()}">${a.product}</span>
-            ${shortName}
+            ${shortName}${isTopAdset(a.name) ? '<span class="top-badge">TOP</span>' : ''}
           </div>
           <div class="metric">${a.spend > 0 ? '$' + fmt(a.spend) : '—'}</div>
           <div class="metric ${a.purchases > 0 ? '' : (a.spend > 0 ? 'na' : 'secondary')}">${a.purchases > 0 ? fmtInt(a.purchases) : (a.spend > 0 ? '0' : '—')}</div>
@@ -833,7 +902,7 @@ function renderPerfTable(ads, adset) {
     <tbody>${ads.map(a => {
       const rec = getRecommendation(a, adset);
       return `<tr>
-        <td title="${a.n}"><div class="ad-name-cell">${getThumbImg(a.n)}<span class="ad-name-text">${shortAdName(a.n)}</span></div></td>
+        <td title="${a.n}"><div class="ad-name-cell">${getThumbImg(a.n)}<span class="ad-name-text">${shortAdName(a.n)}</span>${isTopAd(a.n) ? '<span class="top-badge">TOP</span>' : ''}</div></td>
         <td><div class="ad-delivery"><span class="status-dot ${a.d}"></span>${deliveryLabel(a.d)}</div></td>
         <td>${a.s > 0 ? '$' + fmt(a.s) : '—'}</td>
         <td>${a.pu > 0 ? fmtInt(a.pu) : (a.s > 0 ? '0' : '—')}</td>
@@ -861,7 +930,7 @@ function renderFunnelTable(ads) {
     <tbody>${ads.map(a => {
       const convRate = a.lc > 0 && a.pu > 0 ? ((a.pu / a.lc) * 100).toFixed(1) + '%' : '—';
       return `<tr>
-        <td title="${a.n}"><div class="ad-name-cell">${getThumbImg(a.n, 32)}<span class="ad-name-text">${shortAdName(a.n)}</span></div></td>
+        <td title="${a.n}"><div class="ad-name-cell">${getThumbImg(a.n, 32)}<span class="ad-name-text">${shortAdName(a.n)}</span>${isTopAd(a.n) ? '<span class="top-badge">TOP</span>' : ''}</div></td>
         <td>${a.lc > 0 ? fmtInt(a.lc) : '—'}</td>
         <td>${a.ctr > 0 ? a.ctr.toFixed(2) + '%' : '—'}</td>
         <td>${a.lv > 0 ? fmtInt(a.lv) : '—'}</td>
@@ -894,7 +963,7 @@ function renderVideoTable(ads) {
     <tbody>${videoAds.map(a => {
       const retention = a.v25 > 0 ? ((a.v100 / a.v25) * 100).toFixed(0) : 0;
       return `<tr>
-        <td title="${a.n}"><div class="ad-name-cell">${getThumbImg(a.n, 32)}<span class="ad-name-text">${shortAdName(a.n)}</span></div></td>
+        <td title="${a.n}"><div class="ad-name-cell">${getThumbImg(a.n, 32)}<span class="ad-name-text">${shortAdName(a.n)}</span>${isTopAd(a.n) ? '<span class="top-badge">TOP</span>' : ''}</div></td>
         <td>${a.tp ? fmtInt(a.tp) : '—'}</td>
         <td>${a.ctp ? '$' + fmt(a.ctp) : '—'}</td>
         <td>${a.apt && a.apt !== '00:00:00' ? a.apt.replace(/^0+:?/, '') : '—'}</td>
@@ -918,7 +987,7 @@ function renderQualityTable(ads) {
       <th>Engagement Rank</th>
     </tr></thead>
     <tbody>${ads.filter(a => a.s > 0).map(a => `<tr>
-        <td title="${a.n}"><div class="ad-name-cell">${getThumbImg(a.n, 32)}<span class="ad-name-text">${shortAdName(a.n)}</span></div></td>
+        <td title="${a.n}"><div class="ad-name-cell">${getThumbImg(a.n, 32)}<span class="ad-name-text">${shortAdName(a.n)}</span>${isTopAd(a.n) ? '<span class="top-badge">TOP</span>' : ''}</div></td>
         <td>${rankBadge(a.cr)}</td>
         <td>${rankBadge(a.qr)}</td>
         <td>${rankBadge(a.er)}</td>
