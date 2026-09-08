@@ -31,6 +31,11 @@
   color: var(--blue, #3949ab);
   border: 1px solid var(--blue, #3949ab);
 }
+.perf-badge.graduated {
+  background: var(--purple-bg, #f3e8ff);
+  color: var(--purple, #7c3aed);
+  border: 1px solid var(--purple, #7c3aed);
+}
 .adset-row.winner-row > .adset-header {
   border-left: 3px solid var(--green, #1a8a3f);
 }
@@ -43,6 +48,9 @@
 .adset-row.watching-row > .adset-header {
   border-left: 3px solid var(--blue, #3949ab);
 }
+.adset-row.graduated-row > .adset-header {
+  border-left: 3px solid var(--purple, #7c3aed);
+}
 .ad-table tr.winner-ad-row td:first-child {
   border-left: 3px solid var(--green, #1a8a3f);
 }
@@ -54,6 +62,9 @@
 }
 .ad-table tr.watching-ad-row td:first-child {
   border-left: 3px solid var(--blue, #3949ab);
+}
+.ad-table tr.graduated-ad-row td:first-child {
+  border-left: 3px solid var(--purple, #7c3aed);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .perf-badge.winner {
@@ -68,6 +79,9 @@
   :root:not([data-theme="light"]) .perf-badge.watching {
     background: rgba(57,73,171,0.15);
   }
+  :root:not([data-theme="light"]) .perf-badge.graduated {
+    background: rgba(124,58,237,0.15);
+  }
 }
 :root[data-theme="dark"] .perf-badge.winner {
   background: rgba(26,138,63,0.15);
@@ -80,6 +94,9 @@
 }
 :root[data-theme="dark"] .perf-badge.watching {
   background: rgba(57,73,171,0.15);
+}
+:root[data-theme="dark"] .perf-badge.graduated {
+  background: rgba(124,58,237,0.15);
 }
 </style></head><body>
 <title>Doctor Pooper Batch Testing</title>
@@ -942,6 +959,39 @@ const THUMBS = {"252.1":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBD
 const ADSETS = DATA.adsets;
 const ADS = DATA.ads;
 
+// Ads graduated from testing to scaling campaigns (keyed by NNN.V batch format)
+const GRADUATED = new Set([
+  // DFC Scaling Winners CBO (active)
+  '302.2','279.3','286.3','291.2','135.1','136.3','214.3','59.2','201.1','217.2',
+  // DFC Scaling Winners CBO (paused ads)
+  '283.1','166.2','61.3',
+  // CM-001-TOFU-Purchase (active)
+  '302.1','275.3','252.2',
+  // DFC Scaling tROAS (campaign paused)
+  '281.1','281.2','274.3','281.3','274.2','274.1',
+  // DFK Scaling Winners CBO (active)
+  '306.3','305.1','304.3','304.2','303.1','41.2',
+  // DFK Scaling Winners CBO (paused ads)
+  '41.3','64.1'
+]);
+// Non-numeric graduated ads (matched by substring)
+const GRADUATED_NAMES = ['DFC-Skeptical-Risk-Free','BUNDLE BANNERS'];
+
+function isGraduated(adName) {
+  var key = null;
+  var m = adName.match(/Batch[- ]?(\d+)\.(\d+)/);
+  if (!m) m = adName.match(/#(\d+)\.(\d+)/);
+  if (m) key = m[1] + '.' + m[2];
+  if (!key) { m = adName.match(/#(\d+)\b/); if (m) key = m[1] + '.0'; }
+  if (!key) { m = adName.match(/^(\d+)\.(\d+)/); if (m) key = m[1] + '.' + m[2]; }
+  if (!key) { m = adName.match(/\|\s*(\d+)\.(\d+)/); if (m) key = m[1] + '.' + m[2]; }
+  if (key && GRADUATED.has(key)) return true;
+  for (var i = 0; i < GRADUATED_NAMES.length; i++) {
+    if (adName.indexOf(GRADUATED_NAMES[i]) !== -1) return true;
+  }
+  return false;
+}
+
 // Build lookup: adset name -> ads
 const adsByAdset = {};
 
@@ -1125,7 +1175,7 @@ function renderList() {
           <div class="expand-icon">${hasAds ? '▶' : ''}</div>
           <div class="adset-name" title="${a.name}">
             <span class="product-tag ${a.product.toLowerCase()}">${a.product}</span>
-            ${shortName}${isTopAdset(a.name) ? '<span class="top-badge">TOP</span>' : ''}${perfBadge(classifyAdset(a), a.delivery)}
+            ${shortName}${isTopAdset(a.name) ? '<span class="top-badge">TOP</span>' : ''}${perfBadge(classifyAdset(a), a.delivery)}${adsetHasGraduated(a.name) ? '<span class="perf-badge graduated">GRADUATED ↑</span>' : ''}
           </div>
           <div class="metric">${a.spend > 0 ? '$' + fmt(a.spend) : '—'}</div>
           <div class="metric ${a.purchases > 0 ? '' : (a.spend > 0 ? 'na' : 'secondary')}">${a.purchases > 0 ? fmtInt(a.purchases) : (a.spend > 0 ? '0' : '—')}</div>
@@ -1179,7 +1229,7 @@ function renderPerfTable(ads, adset) {
       const adCls = classifyAd(a, adset);
       const adEff = effectiveClass(adCls, a.d);
       return `<tr class="${adEff === 'winner' ? 'winner-ad-row' : adEff === 'runnerup' ? 'runnerup-ad-row' : adEff === 'watching' ? 'watching-ad-row' : adEff === 'under' ? 'under-ad-row' : ''}">
-        <td title="${a.n}"><div class="ad-name-cell">${getThumbImg(a.n)}<span class="ad-name-text">${shortAdName(a.n)}</span>${isTopAd(a.n) ? '<span class="top-badge">TOP</span>' : ''}${perfBadge(adCls, a.d)}</div></td>
+        <td title="${a.n}"><div class="ad-name-cell">${getThumbImg(a.n)}<span class="ad-name-text">${shortAdName(a.n)}</span>${isTopAd(a.n) ? '<span class="top-badge">TOP</span>' : ''}${perfBadge(adCls, a.d, a.n)}</div></td>
         <td><div class="ad-delivery"><span class="status-dot ${a.d}"></span>${deliveryLabel(a.d)}</div></td>
         <td>${a.s > 0 ? '$' + fmt(a.s) : '—'}</td>
         <td>${a.pu > 0 ? fmtInt(a.pu) : (a.s > 0 ? '0' : '—')}</td>
@@ -1344,17 +1394,28 @@ function classifyAd(ad, adset) {
   return 'neutral';
 }
 
-function perfBadge(cls, delivery) {
-  if (cls === 'winner') return '<span class="perf-badge winner">WINNER</span>';
-  if (cls === 'runnerup') return '<span class="perf-badge runnerup">RUNNER-UP</span>';
-  if (cls === 'under' && delivery === 'active') return '<span class="perf-badge watching">WATCHING</span>';
-  if (cls === 'under') return '<span class="perf-badge under">UNDER-PERFORMER</span>';
-  return '';
+function perfBadge(cls, delivery, adName) {
+  var badge = '';
+  if (cls === 'winner') badge = '<span class="perf-badge winner">WINNER</span>';
+  else if (cls === 'runnerup') badge = '<span class="perf-badge runnerup">RUNNER-UP</span>';
+  else if (cls === 'under' && delivery === 'active') badge = '<span class="perf-badge watching">WATCHING</span>';
+  else if (cls === 'under') badge = '<span class="perf-badge under">UNDER-PERFORMER</span>';
+  if (adName && isGraduated(adName)) badge += '<span class="perf-badge graduated">GRADUATED ↑</span>';
+  return badge;
 }
 
 function effectiveClass(cls, delivery) {
   if (cls === 'under' && delivery === 'active') return 'watching';
   return cls;
+}
+
+function adsetHasGraduated(adsetName) {
+  var ads = adsByAdset[adsetName];
+  if (!ads) return false;
+  for (var i = 0; i < ads.length; i++) {
+    if (isGraduated(ads[i].n)) return true;
+  }
+  return false;
 }
 
 function getRecommendation(ad, adset) {
@@ -1612,7 +1673,7 @@ function renderCampaignView() {
     var cls = adset ? classifyAd(a, adset) : 'neutral';
     var eff = effectiveClass(cls, a.d);
     var rowClass = eff === 'winner' ? 'winner-ad-row' : eff === 'runnerup' ? 'runnerup-ad-row' : eff === 'watching' ? 'watching-ad-row' : eff === 'under' ? 'under-ad-row' : '';
-    var badge = perfBadge(cls, a.d);
+    var badge = perfBadge(cls, a.d, a.n);
     var batch = extractBatch(a.as);
 
     return '<tr class="' + rowClass + '">' +
